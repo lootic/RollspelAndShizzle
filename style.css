@@ -1,0 +1,26 @@
+.stat {
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.table-header {
+  text-align: right;
+}
+
+.card {
+  float: left;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.wide {
+  width: 70px;
+  text-align: right;
+}
+
+body {
+  font-family: sans-serif;
+}

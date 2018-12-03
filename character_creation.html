@@ -1,0 +1,460 @@
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="style.css"></link>
+  <script src="abilities_data.js"></script>
+  <script src="armour_data.js"></script>
+  <script src="proficiency_data.js"></script>
+  <script src="character.js"></script>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Karaktär</h2>
+    <table>
+      <tr>
+        <td class="table-header">
+          Namn
+        </td>
+        <td>
+          <input id="name" type="text"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Yrke
+        </td>
+        <td>
+          <select id="proficiency" onchange="recalc()">
+            <option value="warrior">Krigare</option>
+            <option value="knight">Riddare</option>
+            <option value="wizard">Trollkarl</option>
+            <option value="sword-magician">Svärdsmagiker</option>
+            <option value="priest">Präst</option>
+            <option value="holy-warrior">Helig Krigare</option>
+            <option value="thief">Tjuv</option>
+            <option value="hunter">Jägare</option>
+            <option value="craftsman">Hantverkare</option>
+            <option value="merchant">Handelsresande</option>
+            <option value="scholar">Lärd</option>
+            <option value="entertainer">Underhållare</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Ras
+        </td>
+        <td>
+          <select id="race" onchange="recalc()">
+          <option value="human">Människa</option>
+          <option value="dwarf">Dvärg</option>
+          <option value="elven">Alv</option>
+          <option value="hobbit">Halvlängdsman</option>
+          <option value="half-elven">Halvalv</option>
+          <option value="half-troll">Halvtroll</option>
+        </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Ålder
+        </td>
+        <td>
+          <input id="age" class="stat wide" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          Kön
+        </td>
+        <td>
+          <select id="gender">
+          <option value="man">Man</option>
+          <option value="woman">Kvinna</option>
+        </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          Vapenhand
+        </td>
+        <td>
+          <select id="main-hand">
+          <option value="right">Höger</option>
+          <option value="left">Vänster</option>
+          <option value="both">Dubbelhänt</option>
+          <option value="ambidextrious">Ambidextriös</option>
+        </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          Äventyrspoäng
+        </td>
+        <td>
+          <input id="experiencePoints" class="stat wide" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Yrkesnivå
+        </td>
+        <td>
+          <select id="level">
+            <option value="amatuer">Amatör</option>
+            <option value="apprentice">Lärling</option>
+            <option value="practitioner">Utövare</option>
+            <option value="master">Mästare</option>
+            <option value="legend">Legend</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Pengar
+        </td>
+        <td>
+          <input id="money" class="stat wide" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Grundegenskaper</h2>
+    <table>
+      <tr>
+        <td class="table-header">
+          <span>Styrka</span>
+        </td>
+        <td>
+          <input id="strength" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Fysik</span>
+        </td>
+        <td>
+          <input id="physicality" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Smidighet</span>
+        </td>
+        <td>
+          <input id="dexterity" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Storlek</span>
+        </td>
+        <td>
+          <input id="size" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Intelligens</span>
+        </td>
+        <td>
+          <input id="intelligence" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Psyke</span>
+        </td>
+        <td>
+          <input id="psyche" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Spiritus</span>
+        </td>
+        <td>
+          <input id="spirituality" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Karisma</span>
+        </td>
+        <td>
+          <input id="charisma" class="stat" type="text" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Sekundära egenskaper</h2>
+    <table>
+      <tr>
+        <td class="table-header">
+          <span>Chans lära besvärjelse</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="chance-learn-spell"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Skadebonus</span>
+        </td>
+        <td>
+          <input disabled style="width: 40px;" class="stat" id="damage-bonus"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Initiativmodifikation</span>
+        </td>
+        <td>
+          <input disabled id="initiative-modification" class="stat"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Bärförmåga(kg)</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="equip-load"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Förflyttning(meter/SR)</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="movement"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Skräckmodifikation</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="terror-modification"></input>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Kroppspoäng</h2>
+    <table>
+      <!--<tr>
+        <td class="table-header">
+          Grundkroppspoäng
+        </td>
+        <td>
+          <input disabled class="stat" id="base-hit-points"></input>
+        </td>
+      </tr>-->
+      <tr>
+        <td class="table-header">
+          Extra kroppspoäng
+        </td>
+        <td><input class="stat" id="extra-hit-points" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          Total kroppspoäng
+        </td>
+        <td><input disabled class="stat" id="total-hit-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <th class="table-header">Kroppsdel</th>
+        <th class="table-header">KP</th>
+        <th style="text-align: left;">Rustning</th>
+        <th>RV</th>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Huvud</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="head-hit-points"></input>
+        </td>
+        <td>
+          <select id="head-armour" onchange="recalc()"></select>
+        </td>
+        <td>
+          <input disabled class="stat" id="head-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Vänster arm</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="left-arm-hit-points"></input>
+        </td>
+        <td>
+          <select id="left-arm-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="left-arm-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Höger arm</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="right-arm-hit-points"></input>
+        </td>
+        <td>
+          <select id="right-arm-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="right-arm-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Bröstkorg</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="torso-hit-points"></input>
+        </td>
+        <td>
+          <select id="torso-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="torso-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Mage</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="stomach-hit-points"></input>
+        </td>
+        <td>
+          <select id="stomach-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="stomach-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Vänster ben</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="left-leg-hit-points"></input>
+        </td>
+        <td>
+          <select id="left-leg-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="left-leg-armour-points"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Höger ben</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="right-leg-hit-points"></input>
+        </td>
+        <td>
+          <select id="right-leg-armour" onchange="recalc()">
+          </select>
+        </td>
+        <td>
+          <input disabled class="stat" id="right-leg-armour-points"></input>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Stridskapacitet</h2>
+    <table>
+      <tr>
+        <td class="table-header">
+          <span>Extra stridskapacitet</span>
+        </td>
+        <td>
+          <input class="stat" id="extra-fighting-capacity" onkeyup="recalc()"></input>
+        </td>
+      </tr>
+      <tr>
+        <td class="table-header">
+          <span>Total stridskapacitet</span>
+        </td>
+        <td>
+          <input disabled class="stat" id="total-fighting-capacity"></input>
+        </td>
+      </tr>
+    </table>
+    <table id="attacks-and-parries" style="width: 200px;">
+      <tr>
+        <th style="text-align: center;">
+          Attacker
+        </th>
+        <th style="text-align: center;">
+          Pareringar
+        </th>
+      </tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Färdigheter</h2>
+    <table>
+      <tr>
+        <td>
+          Färdighetspoäng
+        </td>
+        <td>
+          <input disabled style="width: 40px;" class="stat" id="ability-points"></input>
+        </td>
+      </tr>
+    </table>
+    <table id="abilities">
+      <tr>
+        <th>Färdighet</th>
+        <th>FV</th>
+      </tr>
+    </table>
+    <button onclick="addAbility()">Lägg till</button>
+  </div>
+  <div class="card">
+    <h2>Utrustning</h2>
+    <table>
+      <tr>
+        <td>
+          Total vikt
+        </td>
+        <td>
+          <input disabled style="width: 40px;" class="stat" id="total-weight"></input>
+        </td>
+      </tr>
+    </table>
+    <table id="abilities">
+      <tr>
+        <th>Föremål</th>
+        <th>Vikt</th>
+      </tr>
+    </table>
+    <button onclick="addItem()">Lägg till</button>
+  </div>
+</body>
+
+</html>
