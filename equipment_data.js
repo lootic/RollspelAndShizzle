@@ -1,167 +1,802 @@
 let equipmentLookUpTable = {
+  "Arbalestpil": {
+    "price": 6,
+    "weight": 0.1
+  },
+  "Armborstpil": {
+    "price": 50,
+    "weight": 0.05
+  },
   "Basker": {
-    "weight": 0,
-    "price": 15
+    "price": 15,
+    "weight": 0
+  },
+  "Bläck": {
+    "price": 5,
+    "weight": 0
+  },
+  "Blåsbälg": {
+    "price": 90,
+    "weight": 2
+  },
+  "Bordsvin": {
+    "price": 3,
+    "weight": 1
+  },
+  "Brännvin": {
+    "price": 10,
+    "weight": 1
   },
   "Byxor": {
-    "weight": 0.5,
-    "price": 25
+    "price": 25,
+    "weight": 0.5
   },
   "Bälte": {
-    "weight": 0,
-    "price": 40
+    "price": 40,
+    "weight": 0
+  },
+  "Bärbar smedja": {
+    "price": 625,
+    "weight": 26
+  },
+  "Bärbart städ": {
+    "price": 190,
+    "weight": 5
+  },
+  "Bågsträng": {
+    "price": 3,
+    "weight": 0
+  },
+  "Cider": {
+    "price": 5,
+    "weight": 1
+  },
+  "Dryckeshorn": {
+    "price": 25,
+    "weight": 0.5
+  },
+  "Dyrkar, små lås": {
+    "price": 22,
+    "weight": 0.05
+  },
+  "Dyrkar, stora lås": {
+    "price": 32,
+    "weight": 0.1
+  },
+  "Eldpulver(1 dos)": {
+    "price": 6,
+    "weight": 0
+  },
+  "Fackla": {
+    "price": 5,
+    "weight": 1
+  },
+  "Filt (tjock)": {
+    "price": 25,
+    "weight": 1
+  },
+  "Filt (tunn)": {
+    "price": 20,
+    "weight": 0.5
+  },
+  "Fint vin": {
+    "price": 30,
+    "weight": 1
+  },
+  "Fisk(1 portion)": {
+    "price": 4,
+    "weight": 0.4
+  },
+  "Fiskekrok": {
+    "price": 15,
+    "weight": 0
+  },
+  "Fiskelina": {
+    "price": 5,
+    "weight": 0
+  },
+  "Fiskenät": {
+    "price": 30,
+    "weight": 2
+  },
+  "Flacktång": {
+    "price": 50,
+    "weight": 0.5
+  },
+  "Flinta och stål": {
+    "price": 15,
+    "weight": 0
+  },
+  "Flöjt": {
+    "price": 90,
+    "weight": 0
+  },
+  "Färg(4l)": {
+    "price": 35,
+    "weight": 5
+  },
+  "Fågel(1 portion)": {
+    "price": 6,
+    "weight": 0.4
+  },
+  "Glasflaska(1 dos)": {
+    "price": 60,
+    "weight": 0.1
+  },
+  "Glasflaska(10 doser)": {
+    "price": 160,
+    "weight": 0.5
+  },
+  "Glasflaska(5 doser)": {
+    "price": 100,
+    "weight": 0.25
+  },
+  "Glasskärare": {
+    "price": 350,
+    "weight": 0
+  },
+  "Glimmerplatta": {
+    "price": 15,
+    "weight": 0
+  },
+  "Glödlåda": {
+    "price": 10,
+    "weight": 1
+  },
+  "Griptång": {
+    "price": 30,
+    "weight": 2
+  },
+  "Grov spik": {
+    "price": 5,
+    "weight": 0
+  },
+  "Grönsakspaj(1 portion)": {
+    "price": 2,
+    "weight": 0.4
+  },
+  "Grönsaksstuvning(1 portion)": {
+    "price": 1,
+    "weight": 0.4
+  },
+  "Guldbestick": {
+    "price": 2000,
+    "weight": 0.2
+  },
+  "Guldbägare": {
+    "price": 2500,
+    "weight": 0.3
+  },
+  "Guldtallrik": {
+    "price": 1500,
+    "weight": 0.4
+  },
+  "Gångjärnsknäckare": {
+    "price": 15,
+    "weight": 0.5
+  },
+  "Hacka": {
+    "price": 125,
+    "weight": 3
+  },
+  "Halmmadrass": {
+    "price": 30,
+    "weight": 2
+  },
+  "Handborr": {
+    "price": 85,
+    "weight": 0.5
   },
   "Handskar": {
-    "weight": 0,
-    "price": 40
+    "price": 40,
+    "weight": 0
+  },
+  "Handyxa": {
+    "price": 60,
+    "weight": 3
+  },
+  "Harpa": {
+    "price": 600,
+    "weight": 5
   },
   "Hatt": {
-    "weight": 0,
-    "price": 30
+    "price": 30,
+    "weight": 0
+  },
+  "Helt vildsvin(175 portioner)": {
+    "price": 25,
+    "weight": 70
   },
   "Hosor": {
-    "weight": 0.5,
-    "price": 25
+    "price": 25,
+    "weight": 0.5
+  },
+  "Hänglås": {
+    "price": 180,
+    "weight": 0.5
+  },
+  "Högaffel": {
+    "price": 60,
+    "weight": 3
+  },
+  "Ihopfällbar träsäng": {
+    "price": 250,
+    "weight": 15
+  },
+  "Inspektionsspegel": {
+    "price": 90,
+    "weight": 0.5
+  },
+  "Irriterande pulver(5 doser)": {
+    "price": 30,
+    "weight": 0
   },
   "Jacka": {
-    "weight": 0.5,
-    "price": 30
+    "price": 30,
+    "weight": 0.5
+  },
+  "Järnborr": {
+    "price": 10,
+    "weight": 0
+  },
+  "Järngryta(1l)": {
+    "price": 15,
+    "weight": 2
+  },
+  "Järngryta(20l)": {
+    "price": 225,
+    "weight": 12
+  },
+  "Järngryta(2l)": {
+    "price": 25,
+    "weight": 3
+  },
+  "Järngryta(4l)": {
+    "price": 45,
+    "weight": 5
+  },
+  "Järnkil": {
+    "price": 5,
+    "weight": 0
+  },
+  "Järnplogblad": {
+    "price": 190,
+    "weight": 10
+  },
+  "Kedja(1m)": {
+    "price": 200,
+    "weight": 5
   },
   "Kjol": {
-    "weight": 0,
-    "price": 20
+    "price": 20,
+    "weight": 0
   },
   "Klänning": {
-    "weight": 0.5,
-    "price": 50
+    "price": 50,
+    "weight": 0.5
   },
-  "Kortbyxor": {
-    "weight": 0,
-    "price": 10
+  "Kniv": {
+    "price": 50,
+    "weight": 0.5
   },
-  "Kåpa": {
-    "weight": 2,
-    "price": 130
-  },
-  "Kängor": {
-    "weight": 1,
-    "price": 75
-  },
-  "Låga stövlar, hårda": {
-    "weight": 1,
-    "price": 100
-  },
-  "Läderskor": {
-    "weight": 0.5,
-    "price": 50
-  },
-  "Läderstövlar, hårda": {
-    "weight": 1,
-    "price": 200
-  },
-  "Läderstövlar, mjuka": {
-    "weight": 2,
-    "price": 100
-  },
-  "Mantel": {
-    "weight": 2,
-    "price": 100
-  },
-  "Mössa": {
-    "weight": 0,
-    "price": 5
-  },
-  "Sandaler": {
-    "weight": 2,
-    "price": 10
-  },
-  "Skjorta": {
-    "weight": 0,
-    "price": 10
-  },
-  "Slokhatt": {
-    "weight": 0,
-    "price": 25
-  },
-  "Särk": {
-    "weight": 0.5,
-    "price": 15
-  },
-  "Tunika": {
-    "weight": 0.5,
-    "price": 20
-  },
-  "Underkläder": {
-    "weight": 0,
-    "price": 15
-  },
-  "Ylletröja": {
-    "weight": 1,
-    "price": 20
-  },
-  "Yllevantar": {
-    "weight": 0,
-    "price": 10
-  },
-  "Glasflaska(1l)": {
-    "weight": 0.5,
-    "price": 160
-  },
-  "Glasflaska(100ml)": {
-    "weight": 0.1,
-    "price": 60
-  },
-  "Glasflaska(500ml)": {
-    "weight": 0.25,
-    "price": 100
+  "Kofot": {
+    "price": 25,
+    "weight": 2
   },
   "Koger(20 pilar)": {
-    "weight": 0.5,
-    "price": 40
+    "price": 40,
+    "weight": 0.5
   },
-  "Lerkruka(500ml)": {
-    "weight": 1,
-    "price": 3
+  "Kortbyxor": {
+    "price": 10,
+    "weight": 0
   },
-  "Lerkruka(2l)": {
-    "weight": 2,
-    "price": 15
+  "Krostallbägare": {
+    "price": 250,
+    "weight": 0.3
+  },
+  "Kängor": {
+    "price": 75,
+    "weight": 1
+  },
+  "Kåpa": {
+    "price": 130,
+    "weight": 2
+  },
+  "Kött och rovor(1 portion)": {
+    "price": 8,
+    "weight": 0.4
+  },
+  "Köttpaj(1 portion)": {
+    "price": 8,
+    "weight": 0.4
+  },
+  "Köttstuvning(1 portion)": {
+    "price": 4,
+    "weight": 0.4
+  },
+  "Lampolja": {
+    "price": 10,
+    "weight": 1
+  },
+  "Lerkruka(0.5l)": {
+    "price": 3,
+    "weight": 1
   },
   "Lerkruka(20l)": {
-    "weight": 8,
-    "price": 130
+    "price": 130,
+    "weight": 8
   },
   "Lerkruka(2l)": {
-    "weight": 2,
-    "price": 15
+    "price": 15,
+    "weight": 2
   },
-  "Lås till skrin": {
-    "weight": 0,
-    "price": 200
+  "Lerkruka(500ml)": {
+    "price": 3,
+    "weight": 1
+  },
+  "Lie": {
+    "price": 60,
+    "weight": 3
+  },
+  "Limpa(2 portioner)": {
+    "price": 1,
+    "weight": 0.8
+  },
+  "Liten blåsbälg": {
+    "price": 90,
+    "weight": 3
+  },
+  "Liten hammare": {
+    "price": 16,
+    "weight": 0.5
+  },
+  "Lockhorn": {
+    "price": 50,
+    "weight": 1
+  },
+  "Luta": {
+    "price": 400,
+    "weight": 1
+  },
+  "Lyra": {
+    "price": 375,
+    "weight": 1.5
+  },
+  "Läderbädd": {
+    "price": 60,
+    "weight": 9
   },
   "Läderhink": {
-    "weight": 3,
-    "price": 40
+    "price": 40,
+    "weight": 3
+  },
+  "Lädernål": {
+    "price": 3,
+    "weight": 0
+  },
+  "Läderskor": {
+    "price": 50,
+    "weight": 0.5
+  },
+  "Läderstövlar, hårda": {
+    "price": 200,
+    "weight": 1
+  },
+  "Läderstövlar, mjuka": {
+    "price": 100,
+    "weight": 2
+  },
+  "Lädertält(2 personer)": {
+    "price": 190,
+    "weight": 8
+  },
+  "Lädertält(4 personer)": {
+    "price": 375,
+    "weight": 16
+  },
+  "Lädertält(8 personer)": {
+    "price": 800,
+    "weight": 30
+  },
+  "Låga stövlar, hårda": {
+    "price": 100,
+    "weight": 1
+  },
+  "Lås till skrin": {
+    "price": 200,
+    "weight": 0
+  },
+  "Låsregelavhakare": {
+    "price": 10,
+    "weight": 0
+  },
+  "Lönnficka": {
+    "price": 5,
+    "weight": 0
+  },
+  "Mantel": {
+    "price": 100,
+    "weight": 2
   },
   "Metallhink": {
-    "weight": 2,
-    "price": 65
+    "price": 65,
+    "weight": 2
   },
   "Metallskrin": {
-    "weight": 2,
-    "price": 140
+    "price": 140,
+    "weight": 2
+  },
+  "Metallsåg": {
+    "price": 250,
+    "weight": 0
+  },
+  "Mjöd(1l)": {
+    "price": 6,
+    "weight": 1
+  },
+  "Murslev": {
+    "price": 40,
+    "weight": 1
+  },
+  "Mössa": {
+    "price": 5,
+    "weight": 0
+  },
+  "Nyckehålsåg": {
+    "price": 375,
+    "weight": 0.5
+  },
+  "Nyckelfil": {
+    "price": 15,
+    "weight": 0
+  },
+  "Nyckelämne": {
+    "price": 14,
+    "weight": 0.05
+  },
+  "Oljelampa": {
+    "price": 7,
+    "weight": 0.5
+  },
+  "Oljelykta": {
+    "price": 40,
+    "weight": 1
+  },
+  "Penna": {
+    "price": 5,
+    "weight": 0
   },
   "Penningpung(100 mynt)": {
-    "weight": 2,
-    "price": 15
+    "price": 15,
+    "weight": 2
+  },
+  "Pergament": {
+    "price": 5,
+    "weight": 0
+  },
+  "Pil": {
+    "price": 2,
+    "weight": 0.05
+  },
+  "Rep(1m)": {
+    "price": 40,
+    "weight": 0.3
+  },
+  "Repstege(1m)": {
+    "price": 5,
+    "weight": 1
   },
   "Ryggsäck(20l)": {
+    "price": 20,
     "weight": 1
-    "price": 20
   },
   "Ryggsäck(40l)": {
-    "weight": 1.5,
-    "price": 30
+    "price": 30,
+    "weight": 1.5
   },
-  "Dryckesskinn(2l)"
+  "Sandaler": {
+    "price": 10,
+    "weight": 2
+  },
+  "Sax": {
+    "price": 50,
+    "weight": 0.5
+  },
+  "Segeldukstält(2 personer)": {
+    "price": 125,
+    "weight": 5
+  },
+  "Segeldukstält(4 personer)": {
+    "price": 250,
+    "weight": 9
+  },
+  "Segeldukstält(8 personer)": {
+    "price": 500,
+    "weight": 16
+  },
+  "Signalhorn": {
+    "price": 30,
+    "weight": 0.5
+  },
+  "Silverbestick": {
+    "price": 150,
+    "weight": 0.2
+  },
+  "Silverbägare": {
+    "price": 125,
+    "weight": 0.3
+  },
+  "Silverslev": {
+    "price": 75,
+    "weight": 0.3
+  },
+  "Silvertallrik": {
+    "price": 75,
+    "weight": 0.3
+  },
+  "Skeppsskorpor(1 dag)": {
+    "price": 2,
+    "weight": 0.3
+  },
+  "Skjorta": {
+    "price": 10,
+    "weight": 0
+  },
+  "Skogsyxa": {
+    "price": 125,
+    "weight": 5
+  },
+  "Skruv": {
+    "price": 10,
+    "weight": 0
+  },
+  "Skruvmejsel": {
+    "price": 15,
+    "weight": 0
+  },
+  "Skyffel": {
+    "price": 40,
+    "weight": 2
+  },
+  "Slokhatt": {
+    "price": 25,
+    "weight": 0
+  },
+  "Slungkula": {
+    "price": 0.5,
+    "weight": 0.05
+  },
+  "Smedja": {
+    "price": 1870,
+    "weight": 500
+  },
+  "Småspik": {
+    "price": 0.75,
+    "weight": 0
+  },
+  "Snara": {
+    "price": 1,
+    "weight": 0.2
+  },
+  "Snickarhammare": {
+    "price": 18,
+    "weight": 1
+  },
+  "Snubbeltråd": {
+    "price": 30,
+    "weight": 0
+  },
+  "Snöre(100m)": {
+    "price": 4,
+    "weight": 1
+  },
+  "Solur": {
+    "price": 600,
+    "weight": 1
+  },
+  "Sovfäll": {
+    "price": 310,
+    "weight": 4
+  },
+  "Spade": {
+    "price": 75,
+    "weight": 2
+  },
+  "Spegel": {
+    "price": 550,
+    "weight": 0.5
+  },
+  "Spik med ögla": {
+    "price": 20,
+    "weight": 0
+  },
+  "Stekpanna": {
+    "price": 25,
+    "weight": 3
+  },
+  "Stenborr": {
+    "price": 50,
+    "weight": 12
+  },
+  "Stenkulor": {
+    "price": 5,
+    "weight": 0
+  },
+  "Stor blåsbälg": {
+    "price": 190,
+    "weight": 12
+  },
+  "Städ": {
+    "price": 625,
+    "weight": 35
+  },
+  "Stämjärn": {
+    "price": 25,
+    "weight": 1
+  },
+  "Stålvajer(1m)": {
+    "price": 40,
+    "weight": 0.2
+  },
+  "Svagdricka": {
+    "price": 2,
+    "weight": 1
+  },
+  "Synål": {
+    "price": 1,
+    "weight": 0
+  },
+  "Sytråd för läder(1m)": {
+    "price": 0.4,
+    "weight": 0
+  },
+  "Sytråd(1m)": {
+    "price": 0.2,
+    "weight": 0
+  },
+  "Säck(100l)": {
+    "price": 4,
+    "weight": 1
+  },
+  "Säck(50l)": {
+    "price": 3,
+    "weight": 0.5
+  },
+  "Säckpipa": {
+    "price": 150,
+    "weight": 3
+  },
+  "Särk": {
+    "price": 15,
+    "weight": 0.5
+  },
+  "Tennbestick": {
+    "price": 22,
+    "weight": 0.2
+  },
+  "Tennmugg": {
+    "price": 40,
+    "weight": 0
+  },
+  "Tennplunta(1 dos)": {
+    "price": 30,
+    "weight": 0
+  },
+  "Tennplunta(5 doser)": {
+    "price": 40,
+    "weight": 0.5
+  },
+  "Tenntallrik": {
+    "price": 25,
+    "weight": 0.3
+  },
+  "Timglas": {
+    "price": 875,
+    "weight": 1
+  },
+  "Torkat kött(1 dag)": {
+    "price": 9,
+    "weight": 0.5
+  },
+  "Trumma": {
+    "price": 190,
+    "weight": 3
+  },
+  "Trähink(20l)": {
+    "price": 15,
+    "weight": 3
+  },
+  "Träkagge(25l)": {
+    "price": 20,
+    "weight": 4
+  },
+  "Trälim(1l)": {
+    "price": 4,
+    "weight": 2
+  },
+  "Trämugg": {
+    "price": 1,
+    "weight": 0
+  },
+  "Träskrin": {
+    "price": 15,
+    "weight": 1
+  },
+  "Träslev": {
+    "price": 2,
+    "weight": 0.3
+  },
+  "Trästege(1m)": {
+    "price": 5,
+    "weight": 2
+  },
+  "Trätallrik": {
+    "price": 1,
+    "weight": 0.2
+  },
+  "Tumstock": {
+    "price": 7,
+    "weight": 0
+  },
+  "Tunika": {
+    "price": 20,
+    "weight": 0.5
+  },
+  "Tunna(100l)": {
+    "price": 50,
+    "weight": 14
+  },
+  "Tygbädd": {
+    "price": 25,
+    "weight": 9
+  },
+  "Tång": {
+    "price": 20,
+    "weight": 0.5
+  },
+  "Underkläder": {
+    "price": 15,
+    "weight": 0
+  },
+  "Vattenskinn(20l)": {
+    "price": 25,
+    "weight": 2
+  },
+  "Vattenskinn(2l)": {
+    "price": 10,
+    "weight": 0.5
+  },
+  "Vaxklump": {
+    "price": 10,
+    "weight": 0
+  },
+  "Vaxljus": {
+    "price": 15,
+    "weight": 0.3
+  },
+  "Vinkelhake": {
+    "price": 12,
+    "weight": 0.5
+  },
+  "Visselpipa": {
+    "price": 25,
+    "weight": 0
+  },
+  "Ylletröja": {
+    "price": 20,
+    "weight": 1
+  },
+  "Yllevantar": {
+    "price": 10,
+    "weight": 0
+  },
+  "Änterhake": {
+    "price": 40,
+    "weight": 0.5
+  },
+  "Öl": {
+    "price": 4,
+    "weight": 1
+  }
 }

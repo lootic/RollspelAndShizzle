@@ -164,6 +164,23 @@ function addAbility() {
   abilityValueCell.appendChild(abilityValue);
 }
 
+function addItem() {
+  let items = document.getElementById("items");
+  let row = items.insertRow()
+  let cell = row.insertCell();
+  let selectNode = document.createElement("select");
+  cell.appendChild(selectNode);
+  for (let key in equipmentLookUpTable) {
+    let option = document.createElement("option")
+    option.value = key;
+    option.textContent = key;
+    selectNode.add(option);
+  }
+  let valueCell = row.insertCell();
+  let value = createStatElement();
+  valueCell.appendChild(value);
+}
+
 function createStatElement() {
   let statElement = document.createElement("input");
   statElement.classList.add("stat");
