@@ -7,6 +7,14 @@ if __name__ == '__main__':
         with open(file_name) as the_file:
             return the_file.read()
 
+    @app.route("/race_data.js")
+    def race_data():
+        return get_file("race_data.js")
+
+    @app.route("/dice.js")
+    def dice():
+        return get_file("dice.js")
+
     @app.route("/abilities_data.js")
     def abilities_data():
         return get_file("abilities_data.js")
@@ -21,7 +29,7 @@ if __name__ == '__main__':
 
     @app.route("/equipment_data.js")
     def equipment_data():
-        return get_file("armour_data.js")
+        return get_file("equipment_data.js")
 
     @app.route("/proficiency_data.js")
     def proficiency_data():

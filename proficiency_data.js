@@ -5,6 +5,7 @@ let proficiencyLookupTable = {
       "Hasardspel", "Hoppa", "Ilmarsch", "Jaga", "Kamouflage", "Klättra",
       "Orientering", "Rida", "Slagsmål", "Två Vapen", "Överlevnad"
     ],
+    "freeAbilityPoints": {},
     "attacks": 4,
     "parries": 4
   },
@@ -17,6 +18,7 @@ let proficiencyLookupTable = {
       "Kulturkännedom", "Läsa/skriva modersmål", "Räkna", "Spela instrument",
       "Taktik", "Övertala"
     ],
+    "freeAbilityPoints": {},
     "attacks": 4,
     "parries": 4
   },
@@ -27,6 +29,7 @@ let proficiencyLookupTable = {
       "Magisk skrift", "Räkna", "Spå väder", "Tala främmande språk",
       "Zoologi"
     ],
+    "freeAbilityPoints": {},
     "attacks": 1,
     "parries": 1
   },
@@ -37,6 +40,7 @@ let proficiencyLookupTable = {
       "Magisk skrift", "Räkna", "Spå väder", "Tala främmande språk",
       "Zoologi"
     ],
+    "freeAbilityPoints": {},
     "attacks": 1,
     "parries": 1
   },
@@ -47,6 +51,7 @@ let proficiencyLookupTable = {
       "Läsa/skriva främmande språk", "Läsa/skriva modersmål",
       "Räkna", "Sjunga", "Tala främmande språk"
     ],
+    "freeAbilityPoints": {},
     "attacks": 1,
     "parries": 1
   },
@@ -58,6 +63,7 @@ let proficiencyLookupTable = {
       "Läsa/skriva modersmål", "Räkna", "Sjunga",
       "Tala främmande språk"
     ],
+    "freeAbilityPoints": {},
     "attacks": 2,
     "parries": 3
   },
@@ -69,7 +75,11 @@ let proficiencyLookupTable = {
       "Knopar", "Lyssna", "Läppläsning", "Muta", "Skugga", "Smyga",
       "Teckenspråk", "Undre världen", "Värdesätta", "Änterhake"
     ],
-    "attacks": 1,
+    "freeAbilityPoints": {
+      "Värdesätta": 2,
+      "Undre världen": 2
+    },
+    "attacks": 2,
     "parries": 1
   },
   "hunter": {
@@ -79,7 +89,8 @@ let proficiencyLookupTable = {
       "Lyssna", "Orientering", "Rida", "Simma", "Skugga", "Smyga",
       "Spå väder", "Spåra", "Zoologi", "Överlevnad"
     ],
-    "attacks": 1,
+    "freeAbilityPoints": {},
+    "attacks": 2,
     "parries": 1
   },
   "craftsman": {
@@ -89,6 +100,11 @@ let proficiencyLookupTable = {
       "Köra vagn", "Läsa/skriva modersmål", "Räkna", "Värdesätta",
       "Övertala"
     ],
+    "freeAbilityPoints": {
+      "Hantverk(Styrkebaserat)": 3,
+      "Hantverk(Smidighetsbaserat)": 3,
+      "Hantverk(Intelligensbaserat)": 3
+    },
     "attacks": 1,
     "parries": 1
   },
@@ -100,6 +116,10 @@ let proficiencyLookupTable = {
       "Rida", "Räkna", "Tala främmande språk", "Värdesätta",
       "Övertala"
     ],
+    "freeAbilityPoints": {
+      "Köpslå": 5,
+      "Värdesätta": 5
+    },
     "attacks": 1,
     "parries": 1
   },
@@ -112,6 +132,7 @@ let proficiencyLookupTable = {
       "Provsmaka", "Räkna", "Sjökunnighet", "Tala främmande språk",
       "Värdesätta", "Zoologi"
     ],
+    "freeAbilityPoints": {},
     "attacks": 1,
     "parries": 1
   },
@@ -122,6 +143,7 @@ let proficiencyLookupTable = {
       "Schack och brädspel", "Sjunga", "Skådespeleri", "Smyga",
       "Spela instrument", "Stjäla föremål", "Undre världen"
     ],
+    "freeAbilityPoints": {},
     "attacks": 1,
     "parries": 1
   }

@@ -1,3 +1,281 @@
+// TODO
+// - add weapon
+// - free ability points should automatically show up
+// - remove ability
+// - remove item
+// - reroll button
+// - validate ability values(should not be bigger than base stat)
+// - add spell/prayer
+// - add a volume system, where some items grant volume and others use it up
+
+let previousRace = null;
+let previousAge = null;
+
+function changeRaces() {
+  let race = document.getElementById("race").value;
+  document.getElementById("age").value = rollAgeForRace(previousAge, race);
+  updateStatForRace(race, "strength");
+  updateStatForRace(race, "physicality");
+  updateStatForRace(race, "dexterity");
+  updateStatForRace(race, "size");
+  updateStatForRace(race, "intelligence");
+  updateStatForRace(race, "psyche");
+  updateStatForRace(race, "spirituality");
+  updateStatForRace(race, "charisma");
+  previousRace = race;
+}
+
+function changeAge() {
+  let race = document.getElementById("race").value;
+  let age = reverseAgeLookup(race, parseInt(document.getElementById("age").value));
+
+  if (!age) {
+    return;
+  }
+
+  updateStatForAge(age, "strength");
+  updateStatForAge(age, "physicality");
+  updateStatForAge(age, "dexterity");
+  updateStatForAge(age, "size");
+  updateStatForAge(age, "intelligence");
+  updateStatForAge(age, "psyche");
+  updateStatForAge(age, "spirituality");
+  updateStatForAge(age, "charisma");
+
+  previousAge = age;
+}
+
+function armourCost() {
+
+}
+
+function reverseAgeLookup(race, age) {
+  let table = raceLookupTable[race].age;
+  for (let key in table) {
+    if (age >= table[key].from && age <= table[key].to) {
+      return key
+    }
+  }
+}
+
+function updateStatForAge(age, stat) {
+  let statElement = document.getElementById(stat);
+  statElement.value = parseInt(statElement.value) - ageStatModifier(previousAge, stat) + ageStatModifier(age, stat);
+}
+
+function updateStatForRace(race, stat) {
+  let statElement = document.getElementById(stat);
+  statElement.value = parseInt(statElement.value) - raceStatModifier(previousRace, stat) + raceStatModifier(race, stat);
+}
+
+function raceStatModifier(race, stat) {
+  if (race === 'elven') {
+    return elvenRaceStatModifier(stat);
+  } else if (race === 'human') {
+    return humanRaceStatModifier(stat);
+  } else if (race === 'dwarf') {
+    return dwarfRaceStatModifier(stat);
+  } else if (race === 'hobbit') {
+    return hobbitRaceStatModifier(stat);
+  } else if (race === 'half-elven') {
+    return halfElvenRaceStatModifier(stat);
+  } else if (race === 'half-troll') {
+    return halfTrollRaceStatModifier(stat);
+  }
+}
+
+function humanRaceStatModifier(stat) {
+  if (stat === 'size') {
+    return 6;
+  } else {
+    return 0;
+  }
+}
+
+function elvenRaceStatModifier(stat) {
+  if (stat === 'size') {
+    return 4;
+  } else if (stat === "strength") {
+    return -1;
+  } else if (stat === "dexterity") {
+    return 1;
+  } else if (stat === "spirituality") {
+    return 1;
+  } else if (stat === "charisma") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function dwarfRaceStatModifier(stat) {
+  if (stat === 'size') {
+    return 1;
+  } else if (stat === "strength") {
+    return 1;
+  } else if (stat === "dexterity") {
+    return -3;
+  } else if (stat === "physicality") {
+    return 2;
+  } else if (stat === "psyche") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function hobbitRaceStatModifier(stat) {
+  if (stat === "strength") {
+    return -2;
+  } else if (stat === "dexterity") {
+    return 2;
+  } else if (stat === "physicality") {
+    return -1;
+  } else if (stat === "intelligence") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function halfElvenRaceStatModifier(stat) {
+  if (stat === "dexterity") {
+    return 1;
+  } else if (stat === "size") {
+    return 5;
+  } else {
+    return 0;
+  }
+}
+
+function halfTrollRaceStatModifier(stat) {
+  if (stat === "strength") {
+    return 2;
+  } else if (stat === "size") {
+    return 6;
+  } else if (stat === "intelligence") {
+    return -1;
+  } else if (stat === "psyche") {
+    return -1;
+  } else if (stat === "spirituality") {
+    return -3;
+  } else {
+    return 0;
+  }
+}
+
+function ageStatModifier(age, stat) {
+  if (age === 'young') {
+    return youngStatModifier(stat);
+  } else if (age === 'mature') {
+    return matureStatModifier(stat);
+  } else if (age === 'grownUp') {
+    return grownUpStatModifier(stat);
+  } else if (age === 'middleAged') {
+    return middleAgedStatModifier(stat);
+  } else if (age === 'old') {
+    return oldStatModifier(stat);
+  } else if (age === 'ancient') {
+    return ancientStatModifier(stat);
+  }
+}
+
+function youngStatModifier(stat) {
+  if (stat === 'physicality') {
+    return 2;
+  } else if (stat === "strength") {
+    return -1;
+  } else if (stat === "dexterity") {
+    return 2;
+  } else if (stat === "intelligence") {
+    return -1;
+  } else if (stat === "psyche") {
+    return -3;
+  } else {
+    return 0;
+  }
+}
+
+function matureStatModifier(stat) {
+  if (stat === 'physicality') {
+    return 1;
+  } else if (stat === "strength") {
+    return 1;
+  } else if (stat === "dexterity") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function grownUpStatModifier(stat) {
+  if (stat === "intelligence") {
+    return 1;
+  } else if (stat === "psyche") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function middleAgedStatModifier(stat) {
+  if (stat === 'intelligence') {
+    return 2;
+  } else if (stat === "strength") {
+    return -1;
+  } else if (stat === "physicality") {
+    return -1;
+  } else if (stat === "dexterity") {
+    return -1;
+  } else if (stat === "charisma") {
+    return 1;
+  } else if (stat === "psyche") {
+    return 2;
+  } else if (stat === "spirituality") {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+function oldStatModifier(stat) {
+  if (stat === 'intelligence') {
+    return 2;
+  } else if (stat === "strength") {
+    return -3;
+  } else if (stat === "physicality") {
+    return -3;
+  } else if (stat === "dexterity") {
+    return -3;
+  } else if (stat === "size") {
+    return -1;
+  } else if (stat === "psyche") {
+    return 3;
+  } else if (stat === "spirituality") {
+    return 2;
+  } else {
+    return 0;
+  }
+}
+
+function ancientStatModifier(stat) {
+  if (stat === "strength") {
+    return -6;
+  } else if (stat === "physicality") {
+    return -6;
+  } else if (stat === "dexterity") {
+    return -5;
+  } else if (stat === "size") {
+    return -1;
+  } else if (stat === "psyche") {
+    return 3;
+  } else if (stat === "spirituality") {
+    return 4;
+  } else {
+    return 0;
+  }
+}
+
 function recalc() {
   let strength = getIntegerValue("strength");
   let physicality = getIntegerValue("physicality");
@@ -21,30 +299,116 @@ function recalc() {
   initiativeModification(dexterity);
   equipLoad(strength);
   abilityPoints(strength, physicality, dexterity, size, intelligence, psyche, spirituality, charisma, age, race, proficiency);
+  calculateItemCosts();
   armourPoints();
-  attacksAndParries(proficiency);
 }
 
-function attacksAndParries(proficiency) {
+function reroll() {
+  rollAge();
+  rollStats();
+  rollHand();
+  document.getElementById("money").value = rollMoney();
+  previousRace = document.getElementById("race").value;
+}
+
+function rollHand() {
+  let mainHand = document.getElementById("main-hand");
+  let mainHandRoll = roll("1T20");
+  if (mainHandRoll === 20) {
+    mainHand.value = "ambidextrious";
+  } else if (mainHandRoll === 19) {
+    mainHand.value = "both";
+  } else if (mainHandRoll > 14) {
+    mainHand.value = "left";
+  } else {
+    mainHand.value = "right";
+  }
+}
+
+function rollMoney() {
+  let rolledSocioEconomicalClass = roll("2T20");
+  if (rolledSocioEconomicalClass == 40) {
+    return Infinity;
+  } else if (rolledSocioEconomicalClass > 36) {
+    return roll("3T3") * 600;
+  } else if (rolledSocioEconomicalClass > 32) {
+    return roll("3T3") * 300;
+  } else if (rolledSocioEconomicalClass > 27) {
+    return roll("3T3") * 200;
+  } else if (rolledSocioEconomicalClass > 20) {
+    return roll("3T3") * 200;
+  } else if (rolledSocioEconomicalClass > 15) {
+    return roll("2T3") * 100;
+  } else if (rolledSocioEconomicalClass > 7) {
+    return roll("1T3") * 100;
+  } else if (rolledSocioEconomicalClass > 2) {
+    return roll("1T3") * 50;
+  } else {
+    return 0;
+  }
+}
+
+function rollAge() {
+  let race = document.getElementById("race").value;
+  let ageRoll = roll("1T20");
+  let age = null;
+  if (ageRoll == 20) {
+    age = "ancient";
+  } else if (ageRoll > 17) {
+    age = "old";
+  } else if (ageRoll > 14) {
+    age = "middleAged";
+  } else if (ageRoll > 9) {
+    age = "grownUp";
+  } else if (ageRoll > 4) {
+    age = "mature";
+  } else {
+    age = "young";
+  }
+  previousAge = age;
+  document.getElementById("age").value = rollAgeForRace(age, race);
+}
+
+function rollAgeForRace(age, race) {
+  let interval = raceLookupTable[race].age[age].to - raceLookupTable[race].age[age].from;
+  return raceLookupTable[race].age[age].from + parseInt(Math.random() * interval);
+}
+
+function rollStats() {
+  let race = document.getElementById("race").value;
+  document.getElementById("strength").value = roll("3T6") + raceStatModifier(race, "strength") + ageStatModifier(previousAge, "strength");
+  document.getElementById("physicality").value = roll("3T6") + raceStatModifier(race, "physicality") + ageStatModifier(previousAge, "physicality");
+  document.getElementById("dexterity").value = roll("3T6") + raceStatModifier(race, "dexterity") + ageStatModifier(previousAge, "dexterity");
+  document.getElementById("size").value = roll("3T6") + raceStatModifier(race, "size") + ageStatModifier(previousAge, "size");
+  document.getElementById("intelligence").value = roll("3T6") + raceStatModifier(race, "intelligence") + ageStatModifier(previousAge, "intelligence");
+  document.getElementById("psyche").value = roll("3T6") + raceStatModifier(race, "psyche") + ageStatModifier(previousAge, "psyche");
+  document.getElementById("spirituality").value = roll("3T6") + raceStatModifier(race, "spirituality") + ageStatModifier(previousAge, "spirituality");
+  document.getElementById("charisma").value = roll("3T6") + raceStatModifier(race, "charisma") + ageStatModifier(previousAge, "charisma");
+}
+
+function attacksAndParries() {
+  let proficiency = document.getElementById("proficiency").value;
   let attacksAndParries = document.getElementById("attacks-and-parries");
   let attacks = proficiencyLookupTable[proficiency].attacks;
   let parries = proficiencyLookupTable[proficiency].parries;
+
   let numberOfRows = attacksAndParries.rows.length - 1;
-  if (numberOfRows > parries) {
-    for (let i = parries; i < numberOfRows; ++i) {
-      attacksAndParries.deleteRow(1);
-    }
+  for (let i = 0; i < numberOfRows; ++i) {
+    attacksAndParries.deleteRow(attacksAndParries.rows.length - 1);
   }
-  for (let i = numberOfRows; i < parries; ++i) {
+
+  for (let i = 0; i < Math.max(parries, attacks); ++i) {
     let row = attacksAndParries.insertRow()
     let attackCell = row.insertCell();
     if (i < attacks) {
       attackCell.style.textAlign = "center";
       attackCell.appendChild(createStatElement());
     }
-    let parryCell = row.insertCell();
-    parryCell.style.textAlign = "center";
-    parryCell.appendChild(createStatElement());
+    if (i < parries) {
+      let parryCell = row.insertCell();
+      parryCell.style.textAlign = "center";
+      parryCell.appendChild(createStatElement());
+    }
   }
 }
 
@@ -114,8 +478,17 @@ function fightingCapacityCost() {
   let attacksAndParries = document.getElementById("attacks-and-parries");
   let totalCost = 0;
   for (let i = 0; i < attacksAndParries.rows.length; ++i) {
-    let attackCost = attacksAndParries.rows[i].cells[0].childNodes[0].value;
-    let parryCost = attacksAndParries.rows[i].cells[1].childNodes[0].value;
+    let attackColumn = attacksAndParries.rows[i].cells[0].childNodes[0];
+    let attackCost = 0;
+    if (attackColumn) {
+      attackCost = attackColumn.value;
+    }
+    parryColumn = attacksAndParries.rows[i].cells[1];
+
+    let parryCost = 0;
+    if (parryColumn) {
+      parryCost = parryColumn.childNodes[0].value;
+    }
     totalCost += attackCost ? parseInt(attackCost) : 0;
     totalCost += parryCost ? parseInt(parryCost) : 0;
   }
@@ -164,6 +537,73 @@ function addAbility() {
   abilityValueCell.appendChild(abilityValue);
 }
 
+function calculateItemCosts() {
+  let items = document.getElementById("items");
+  let totalItemWeight = 0;
+  let totalItemCost = 0;
+  for (let i = 1; i < items.rows.length; ++i) {
+    let itemName = items.rows[i].cells[0].childNodes[0].value;
+    let itemValue = parseInt(items.rows[i].cells[1].childNodes[0].value);
+    if (!itemValue) {
+      continue;
+    }
+    let itemWeight = equipmentLookUpTable[itemName].weight;
+    let itemCost = equipmentLookUpTable[itemName].price;
+    totalItemCost += itemCost * itemValue;
+    totalItemWeight += itemWeight * itemValue;
+  }
+
+  totalItemCost += calculateArmourCost();
+  totalItemWeight += calculateArmourWeight()/2.0;
+
+  document.getElementById("total-weight").value = totalItemWeight;
+  document.getElementById("spent").value = totalItemCost;
+}
+
+function calculateArmourWeight() {
+  let weight = 0;
+
+  let headArmour = document.getElementById("head-armour").value;
+  let leftArmArmour = document.getElementById("left-arm-armour").value;
+  let rightArmArmour = document.getElementById("right-arm-armour").value;
+  let torsoArmour = document.getElementById("torso-armour").value;
+  let stomachArmour = document.getElementById("stomach-armour").value;
+  let leftLegArmour = document.getElementById("left-leg-armour").value;
+  let rightLegArmour = document.getElementById("right-leg-armour").value;
+
+  weight += armourLookupTable[headArmour].weight.head;
+  weight += armourLookupTable[leftArmArmour].weight.arm;
+  weight += armourLookupTable[rightArmArmour].weight.arm;
+  weight += armourLookupTable[torsoArmour].weight.torso;
+  weight += armourLookupTable[stomachArmour].weight.torso;
+  weight += armourLookupTable[leftLegArmour].weight.leg;
+  weight += armourLookupTable[rightLegArmour].weight.leg;
+
+  return weight;
+}
+
+function calculateArmourCost() {
+  let cost = 0;
+
+  let headArmour = document.getElementById("head-armour").value;
+  let leftArmArmour = document.getElementById("left-arm-armour").value;
+  let rightArmArmour = document.getElementById("right-arm-armour").value;
+  let torsoArmour = document.getElementById("torso-armour").value;
+  let stomachArmour = document.getElementById("stomach-armour").value;
+  let leftLegArmour = document.getElementById("left-leg-armour").value;
+  let rightLegArmour = document.getElementById("right-leg-armour").value;
+
+  cost += armourLookupTable[headArmour].price.head;
+  cost += armourLookupTable[leftArmArmour].price.arm;
+  cost += armourLookupTable[rightArmArmour].price.arm;
+  cost += armourLookupTable[torsoArmour].price.torso;
+  cost += armourLookupTable[stomachArmour].price.torso;
+  cost += armourLookupTable[leftLegArmour].price.leg;
+  cost += armourLookupTable[rightLegArmour].price.leg;
+
+  return cost;
+}
+
 function addItem() {
   let items = document.getElementById("items");
   let row = items.insertRow()
@@ -197,7 +637,7 @@ function totalAbilityCost(race, proficiency) {
     let abilityName = abilities.rows[i].cells[0].childNodes[0].value;
     let abilityValue = abilities.rows[i].cells[1].childNodes[0].value;
     let abilityMultiplier = getAbilityCostMultiplier(proficiency, abilityName);
-    abilityValue -= freeAbilityPoints(race, proficiency, abilityValue);
+    abilityValue -= freeAbilityPoints(race, proficiency, abilityName);
     if (abilityValue > 17) {
       totalAbilityCost += (abilityValue - 17) * abilityMultiplier * 5;
       abilityValue -= (abilityValue - 17);
@@ -222,8 +662,20 @@ function totalAbilityCost(race, proficiency) {
   return totalAbilityCost;
 }
 
-function freeAbilityPoints(race, proficiency, abilityName, abilityValue) {
-  return 0;
+function freeAbilityPoints(race, proficiency, abilityName) {
+  let freeAbilityPoints = 0;
+
+  let proficiencyFreeAbilityPoints = proficiencyLookupTable[proficiency].freeAbilityPoints[abilityName];
+  if (proficiencyFreeAbilityPoints) {
+    freeAbilityPoints += proficiencyFreeAbilityPoints;
+  }
+
+  let raceFreeAbilityPoints = raceLookupTable[race].freeAbilityPoints[abilityName];
+  if (raceFreeAbilityPoints) {
+    freeAbilityPoints += raceFreeAbilityPoints;
+  }
+
+  return freeAbilityPoints;
 }
 
 function getAbilityCostMultiplier(proficiency, abilityName) {
@@ -247,6 +699,9 @@ function abilityPoints(strength, physicality, dexterity, size, intelligence, psy
     lookupAbilityPoints(psyche) +
     lookupAbilityPoints(spirituality) +
     lookupAbilityPoints(charisma));
+  if (proficiency === 'scholar') {
+    abilityPoints *= 2;
+  }
   document.getElementById('ability-points').value = Math.floor(abilityPoints) - totalAbilityCost(race, proficiency);
 }
 
@@ -432,4 +887,6 @@ function lookupAbilityPoints(stat) {
 
 window.onload = function() {
   populateArmourOptions();
+  reroll();
+  recalc();
 }

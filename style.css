@@ -1,8 +1,22 @@
 .stat {
-  width: 26px;
+  width: 2em;
   height: 26px;
   font-size: 16px;
   text-align: center;
+  border: 1px solid black;
+}
+
+input {
+  border: 1px solid black;
+}
+
+select {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.stat:disabled {
+  border: 1px solid black;
 }
 
 .table-header {
