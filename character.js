@@ -379,7 +379,7 @@ function rollStats() {
   document.getElementById("strength").value = roll("3T6") + raceStatModifier(race, "strength") + ageStatModifier(previousAge, "strength");
   document.getElementById("physicality").value = roll("3T6") + raceStatModifier(race, "physicality") + ageStatModifier(previousAge, "physicality");
   document.getElementById("dexterity").value = roll("3T6") + raceStatModifier(race, "dexterity") + ageStatModifier(previousAge, "dexterity");
-  document.getElementById("size").value = roll("3T6") + raceStatModifier(race, "size") + ageStatModifier(previousAge, "size");
+  document.getElementById("size").value = roll("2T6") + raceStatModifier(race, "size") + ageStatModifier(previousAge, "size");
   document.getElementById("intelligence").value = roll("3T6") + raceStatModifier(race, "intelligence") + ageStatModifier(previousAge, "intelligence");
   document.getElementById("psyche").value = roll("3T6") + raceStatModifier(race, "psyche") + ageStatModifier(previousAge, "psyche");
   document.getElementById("spirituality").value = roll("3T6") + raceStatModifier(race, "spirituality") + ageStatModifier(previousAge, "spirituality");

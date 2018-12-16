@@ -93,6 +93,19 @@ let proficiencyLookupTable = {
     "attacks": 2,
     "parries": 1
   },
+  "messenger": {
+    "proficiencyAbilities": [
+      "Administration", "Geografi", "Geologi", "Gömma sig", "Jaga", "Klättra",
+      "Lyssna", "Läsa/skriva modersmål", "Läsa/skriva främmande språk",
+      "Orientering", "Rida", "Smyga", "Spå väder", "Överlevnad"
+    ],
+    "freeAbilityPoints": {
+      "Rida": 2,
+      "Orientering": 2
+    },
+    "attacks": 1,
+    "parries": 2
+  },
   "craftsman": {
     "proficiencyAbilities": ["Bluffa", "Förfalska",
       "Hantverk(Styrkebaserat)", "Hantverk(Smidighetsbaserat)",
