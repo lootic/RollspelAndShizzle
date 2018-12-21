@@ -28,26 +28,26 @@ function exportData() {
   let weapons = exportWeapons();
   let request = new XMLHttpRequest()
 
-  request.open("POST", "/character/create");
+  request.open("POST", "/character");
   request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
   request.send(JSON.stringify({
     "name": getValue("name"),
-    "age": getValue("age"),
+    "age": getValue("age", 0),
     "race": previousRace,
     "sex": getValue("sex"),
     "mainHand": getValue("main-hand"),
     "proficiency": getValue("proficiency"),
-    "strength": getValue("strength"),
-    "physicality": getValue("physicality"),
-    "dexterity": getValue("dexterity"),
-    "size": getValue("size"),
-    "psyche": getValue("psyche"),
-    "intelligence": getValue("intelligence"),
-    "spirituality": getValue("spirituality"),
-    "charisma": getValue("charisma"),
-    "money": getValue("money") - getValue("spent"),
-    "extraFightingCapacity": getValue("extra-fighting-capacity"),
-    "extraHitPoints": getValue("extra-hit-points"),
+    "strength": getValue("strength", 0),
+    "physicality": getValue("physicality", 0),
+    "dexterity": getValue("dexterity", 0),
+    "size": getValue("size", 0),
+    "psyche": getValue("psyche", 0),
+    "intelligence": getValue("intelligence", 0),
+    "spirituality": getValue("spirituality", 0),
+    "charisma": getValue("charisma", 0),
+    "money": getValue("money", 0) - getValue("spent", 0),
+    "extraFightingCapacity": getValue("extra-fighting-capacity", 0),
+    "extraHitPoints": getValue("extra-hit-points", 0),
     "attacks": attacksAndParries.attacks,
     "parries": attacksAndParries.parries,
     "items": items,
@@ -105,6 +105,11 @@ function exportAbilities() {
 }
 
 function getValue(element) {
+  return getValue(element, null);
+}
+
+
+function getValue(element, defaultValue) {
   let value = document.getElementById(element).value;
   try {
     let integerValue = parseInt(value);
@@ -112,7 +117,11 @@ function getValue(element) {
       return integerValue;
     }
   } catch (err) {}
-  return value;
+  if(!value && defaultValue != null) {
+    return defaultValue;
+  } else {
+    return value;
+  }
 }
 
 function importData() {
