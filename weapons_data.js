@@ -12,7 +12,7 @@ let weaponLookupTable = {
     "class": "L",
     "weight": 3,
     "breakpoint": 15,
-    "strengthRequirement": ,9
+    "strengthRequirement": 9,
     "damage": "1T8+2",
     "price": 60,
     "reach": 1
@@ -296,32 +296,44 @@ let weaponLookupTable = {
     "price": 2250,
     "reach": 225
   },
-  "Liten sköld": {
+  "Bucklare": {
     "class": "L",
     "weight": 2,
-    "breakpoint": 20,
+    "breakpoint": 30,
     "strengthRequirement": 5,
     "damage": "1T3",
     "price": 100,
-    "reach": 1
+    "reach": 1,
+    "coverage": 0
   },
-  "Medelstor sköld": {
+  "Rundsköld": {
     "class": "M",
     "weight": 4,
-    "breakpoint": 25,
+    "breakpoint": 35,
     "strengthRequirement": 10,
     "damage": "1T3",
     "price": 350,
+    "reach": 1,
+    "coverage": 1
+  },
+  "Spiksköld": {
+    "class": "M",
+    "weight": 5,
+    "breakpoint": 25,
+    "strengthRequirement": 11,
+    "damage": "1T8",
+    "price": 480,
     "reach": 1
   },
-  "Stor sköld": {
+  "Droppformad sköld": {
     "class": "H",
     "weight": 6,
-    "breakpoint": 30,
+    "breakpoint": 40,
     "strengthRequirement": 14,
     "damage": "1T3",
     "price": 500,
-    "reach": 1
+    "reach": 1,
+    "coverage": 2
   },
   "Kroppssköld": {
     "class": "H",
@@ -329,7 +341,8 @@ let weaponLookupTable = {
     "breakpoint": 40,
     "strengthRequirement": 16,
     "damage": "1T3",
-    "price": 150,
-    "reach": 1
+    "price": 750,
+    "reach": 1,
+    "coverage": 3
   }
 }

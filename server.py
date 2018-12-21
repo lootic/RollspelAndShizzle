@@ -1,7 +1,12 @@
 from flask import Flask, request
 
+# TODO
+# - find better way to add lots of simple files
+
 if __name__ == '__main__':
     app = Flask(__name__)
+
+    routes = [["/race_data.js", "race_data.js"]]
 
     def get_file(file_name):
         with open(file_name) as the_file:
@@ -18,6 +23,11 @@ if __name__ == '__main__':
     @app.route("/abilities_data.js")
     def abilities_data():
         return get_file("abilities_data.js")
+
+
+    @app.route("/weapons_data.js")
+    def weapons_data():
+        return get_file("weapons_data.js")
 
     @app.route("/armour_data.js")
     def armour_data():
@@ -39,12 +49,14 @@ if __name__ == '__main__':
     def style():
         return get_file("style.css")
 
-    @app.route("/character_creation", methods = ['GET', 'POST'])
+    @app.route("/character/create", methods = ['POST'])
+    def create():
+        data = request.get_json()
+        print(data)
+        return ""
+
+    @app.route("/character/form")
     def character_creation():
-        if request.method == 'GET':
-            return get_file("character_creation.html")
-        elif request.method == 'POST':
-            pass
-            #add to a db, sqlite or maybe just store to scratch space
+        return get_file("character_creation.html")
 
     app.run()

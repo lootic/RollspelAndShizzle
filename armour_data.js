@@ -128,7 +128,6 @@ let armourLookupTable = {
   "scale-armour": {
     "text": "Fjällpansar",
     "armourPoints": 8,
-
     "price": {
       "head": 345,
       "arm": 375,

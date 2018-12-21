@@ -1,15 +1,123 @@
 // TODO
-// - add weapon
 // - free ability points should automatically show up
-// - remove ability
-// - remove item
 // - reroll button
+
+// validation
 // - validate ability values(should not be bigger than base stat)
+// - validate spendt money isnt bigger than
+// - validate that attacks and parries doesn't add up to more than the total
+//   fightingCapacity
+// - validate that the amount of used abilityPoints doesn't add up to more than
+//   the amount of ability points available
+
+// - level up button
+// - create json document of all stats
+// - infer values into all fields from a json document
+
 // - add spell/prayer
+// - craete more sophisticated dropdowns which shows more information in table form
 // - add a volume system, where some items grant volume and others use it up
 
 let previousRace = null;
 let previousAge = null;
+
+function exportData() {
+  let attacksAndParries = getAttacksAndParries();
+  let abilities = exportAbilities();
+  let items = exportItems();
+  let weapons = exportWeapons();
+  let request = new XMLHttpRequest()
+
+  request.open("POST", "/character/create");
+  request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+  request.send(JSON.stringify({
+    "name": getValue("name"),
+    "age": getValue("age"),
+    "race": previousRace,
+    "sex": getValue("sex"),
+    "mainHand": getValue("main-hand"),
+    "proficiency": getValue("proficiency"),
+    "strength": getValue("strength"),
+    "physicality": getValue("physicality"),
+    "dexterity": getValue("dexterity"),
+    "size": getValue("size"),
+    "psyche": getValue("psyche"),
+    "intelligence": getValue("intelligence"),
+    "spirituality": getValue("spirituality"),
+    "charisma": getValue("charisma"),
+    "money": getValue("money") - getValue("spent"),
+    "extraFightingCapacity": getValue("extra-fighting-capacity"),
+    "extraHitPoints": getValue("extra-hit-points"),
+    "attacks": attacksAndParries.attacks,
+    "parries": attacksAndParries.parries,
+    "items": items,
+    "weapons": weapons,
+    "abilities": abilities
+  }, null, 4));
+}
+
+function exportItems() {
+  let items = document.getElementById("items");
+  let exportData = [];
+
+  for (let i = 1; i < items.rows.length; ++i) {
+    let itemName = items.rows[i].cells[0].childNodes[0].value;
+    let itemValue = parseInt(items.rows[i].cells[1].childNodes[0].value);
+    if(!itemValue) {
+      itemValue = 0;
+    }
+    exportData.push({
+      "name": itemName,
+      "value": itemValue
+    });
+  }
+  return exportData;
+}
+
+function exportWeapons() {
+
+  let weapons = document.getElementById("weapons");
+  let exportData = [];
+
+  for (let i = 1; i < weapons.rows.length; ++i) {
+    let weaponName = weapons.rows[i].cells[0].childNodes[0].value;
+    exportData.push({
+      "name": weaponName
+    });
+  }
+  return exportData;
+
+}
+
+function exportAbilities() {
+  let abilities = document.getElementById("abilities");
+  let exportData = [];
+
+  for (let i = 1; i < abilities.rows.length; ++i) {
+    let abilityName = abilities.rows[i].cells[0].childNodes[0].value;
+    let abilityValue = parseInt(abilities.rows[i].cells[1].childNodes[0].value);
+    exportData.push({
+      "name": abilityName,
+      "value": abilityValue
+    });
+  }
+  return exportData;
+}
+
+function getValue(element) {
+  let value = document.getElementById(element).value;
+  try {
+    let integerValue = parseInt(value);
+    if (integerValue) {
+      return integerValue;
+    }
+  } catch (err) {}
+  return value;
+}
+
+function importData() {
+
+}
 
 function changeRaces() {
   let race = document.getElementById("race").value;
@@ -43,10 +151,6 @@ function changeAge() {
   updateStatForAge(age, "charisma");
 
   previousAge = age;
-}
-
-function armourCost() {
-
 }
 
 function reverseAgeLookup(race, age) {
@@ -474,6 +578,37 @@ function fightingCapacity(strength, physicality, dexterity) {
   document.getElementById("total-fighting-capacity").value = fightingCapacity + extraFightingCapacity - fightingCapacityCost();
 }
 
+function getAttacksAndParries() {
+  let attacksAndParries = document.getElementById("attacks-and-parries")
+  let attacks = [];
+  let parries = [];
+  for (let i = 1; i < attacksAndParries.rows.length; ++i) {
+    let attackColumn = attacksAndParries.rows[i].cells[0].childNodes[0];
+    if (attackColumn) {
+      let value = attackColumn.value;
+      if (value) {
+        attacks.push(parseInt(value));
+      } else {
+        attacks.push(0);
+      }
+    }
+
+    parryColumn = attacksAndParries.rows[i].cells[1];
+    if (parryColumn) {
+      let value = parryColumn.childNodes[0].value;
+      if (value) {
+        parries.push(parseInt(value));
+      } else {
+        parries.push(0);
+      }
+    }
+  }
+  return {
+    "attacks": attacks,
+    "parries": parries
+  };
+}
+
 function fightingCapacityCost() {
   let attacksAndParries = document.getElementById("attacks-and-parries");
   let totalCost = 0;
@@ -535,7 +670,34 @@ function addAbility() {
   let abilityValueCell = row.insertCell();
   let abilityValue = createStatElement();
   abilityValueCell.appendChild(abilityValue);
+
+  addRemoveButton(abilities, row, row.insertCell());
 }
+
+function calculateWeaponsWeight() {
+  let weapons = document.getElementById("weapons");
+  let weight = 0;
+  for (let i = 1; i < weapons.rows.length; ++i) {
+    let itemName = weapons.rows[i].cells[0].childNodes[0].value;
+    if (itemName) {
+      weight += weaponLookupTable[itemName].weight;
+    }
+  }
+  return weight;
+}
+
+function calculateWeaponsCost() {
+  let weapons = document.getElementById("weapons");
+  let price = 0;
+  for (let i = 1; i < weapons.rows.length; ++i) {
+    let itemName = weapons.rows[i].cells[0].childNodes[0].value;
+    if (itemName) {
+      price += weaponLookupTable[itemName].price;
+    }
+  }
+  return price;
+}
+
 
 function calculateItemCosts() {
   let items = document.getElementById("items");
@@ -554,7 +716,10 @@ function calculateItemCosts() {
   }
 
   totalItemCost += calculateArmourCost();
-  totalItemWeight += calculateArmourWeight()/2.0;
+  totalItemWeight += calculateArmourWeight() / 2.0;
+
+  totalItemCost += calculateWeaponsCost();
+  totalItemWeight += calculateWeaponsWeight();
 
   document.getElementById("total-weight").value = totalItemWeight;
   document.getElementById("spent").value = totalItemCost;
@@ -619,6 +784,39 @@ function addItem() {
   let valueCell = row.insertCell();
   let value = createStatElement();
   valueCell.appendChild(value);
+  addRemoveButton(items, row, row.insertCell());
+}
+
+function addWeapon() {
+  let weapons = document.getElementById("weapons");
+  let row = weapons.insertRow();
+  let cell = row.insertCell();
+  let selectNode = document.createElement("select");
+  cell.appendChild(selectNode);
+  for (let key in weaponLookupTable) {
+    let option = document.createElement("option")
+    option.value = key;
+    option.textContent = key;
+    selectNode.add(option);
+  }
+
+  let removeCell = row.insertCell();
+  addRemoveButton(weapons, row, removeCell);
+}
+
+function addRemoveButton(table, row, cell) {
+  let removeButton = document.createElement('button');
+  removeButton.textContent = 'X'
+  removeButton.onclick = function() {
+    let rows = table.rows;
+    for (let i = 1; i < rows.length; ++i) {
+      if (rows[i] == row) {
+        table.deleteRow(i);
+        return;
+      }
+    }
+  };
+  cell.appendChild(removeButton);
 }
 
 function createStatElement() {
