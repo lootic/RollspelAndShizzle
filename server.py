@@ -4,23 +4,38 @@ import json
 import re
 import os
 
-# TODO
-# - find better way to add lots of simple files
+def get_file(file_name):
+    with open(file_name) as the_file:
+        return the_file.read()
+
+def load_json(json_string):
+    return json.loads(json_string)
+
+def dump_json(dict):
+    return json.dumps(dict, indent=4, sort_keys=True)
+
+def create_id():
+    return str(uuid.uuid4())
+
+def validate_character_id(character):
+    if(not uuid_regex.match(character)):
+        return 'Provided character id "'+ character + '" is not a valid uuid', 400
+
+    file_path = character_folder + '/' + character + '.json'
+    exists = os.path.isfile(file_path)
+    if(not exists):
+        return 'Character does not exist', 404
+    return True
 
 if __name__ == '__main__':
-
-    character_folder = 'Characters'
+    character_folder = 'storage'
     valid_script_file_names = ['race_data.js', 'dice.js', 'abilities_data.js',
         'weapons_data.js', 'armour_data.js', 'character.js',
         'equipment_data.js', 'proficiency_data.js']
-
-    # 87afe8e4-84bc-43ee-a6c1-9ac4ada2ea1a
     uuid_regex = re.compile('^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$')
     app = Flask(__name__)
 
-    def get_file(file_name):
-        with open(file_name) as the_file:
-            return the_file.read()
+    character_list = load_json(get_file(character_folder + "/list.json"))
 
     @app.route("/script/<file_name>")
     def javascript(file_name):
@@ -29,39 +44,57 @@ if __name__ == '__main__':
         else:
             return get_file('script/' + file_name)
 
-
     @app.route("/style.css")
     def style():
         return get_file("style.css")
 
-    @app.route("/character", methods = ['POST'])
+    @app.route("/rest/character")
+    def list_characters():
+        return Response(dump_json(character_list), mimetype='application/json')
+
+    @app.route("/rest/character", methods = ['POST'])
     def create_character():
-        id = str(uuid.uuid4())
+        id = create_id()
         data = request.get_json()
 
-        with open( character_folder +"/" + id + ".json", 'w') as the_file:
-            the_file.write(json.dumps(data))
+        character_list.append({
+            "name": data["name"],
+            "id": id,
+            "proficiency": data["proficiency"],
+            "race": data["race"],
+            "sex": data["sex"]})
+
+        with open(character_folder + "/" + id + ".json", 'w') as the_file:
+            the_file.write(dump_json(data))
+
+        with open(character_folder + "/list.json", 'w') as the_file:
+            the_file.write(dump_json(character_list))
 
         resp = Response(None, status=201)
-        resp.headers['Location'] = '/character/' + id
+        resp.headers['Location'] = '/rest/character/' + id
         return resp
 
-    @app.route("/character/<character>")
+    @app.route("/rest/character/<character>", methods= ["PUT"])
+    def update_character(character):
+        validation = validate_character_id(character)
+        if(validation != True):
+            return validation
+        data = request.get_json()
+        with open(character_folder + '/' + character + '.json', 'w') as the_file:
+            the_file.write(dump_json(data))
+        return Response(None, status=204)
+
+    @app.route("/rest/character/<character>")
     def view_character(character):
-        if(not uuid_regex.match(character)):
-            return 'Provided character id "'+ character + '" is not a valid uuid', 400
+        validation = validate_character_id(character)
+        if(validation != True):
+            return validation
 
-        file_path = character_folder + '/' + character + '.json'
-        exists = os.path.isfile(file_path)
-        if(not exists):
-            return 'Character does not exist', 404
+        return Response(get_file(character_folder + '/' + character + '.json'), mimetype='application/json')
 
-        with open(file_path, 'r') as the_file:
-            return Response(the_file.read(), mimetype='application/json')
-
-
-    @app.route("/character/form")
+    #should we distinguish between real pages and rest? yes ofc! but how?
+    @app.route("/")
     def character_creation():
-        return get_file("character_creation.html")
+        return get_file("index.html")
 
     app.run()

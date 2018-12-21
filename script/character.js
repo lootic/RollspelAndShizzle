@@ -1,6 +1,5 @@
 // TODO
 // - free ability points should automatically show up
-// - reroll button
 
 // validation
 // - validate ability values(should not be bigger than base stat)
@@ -11,8 +10,8 @@
 //   the amount of ability points available
 
 // - level up button
-// - create json document of all stats
 // - infer values into all fields from a json document
+// - show list of characters
 
 // - add spell/prayer
 // - craete more sophisticated dropdowns which shows more information in table form
@@ -20,16 +19,76 @@
 
 let previousRace = null;
 let previousAge = null;
+let characterLocationUrl = null;
 
-function exportData() {
+function navigateTo(id) {
+  elementIds = ['character', 'character-list'];
+  for (let i = 0; i < elementIds.length; ++i) {
+    let elementId = elementIds[i];
+    let element = document.getElementById(elementId);
+    if (elementId == id) {
+      element.style.display = 'inline-block';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+}
+
+function listCharacters() {
+  let characterList = document.getElementById('character-list-content');
+  var request = new XMLHttpRequest();
+  characterList.innerHTML = '';
+  request.addEventListener("load", function() {
+    let json = JSON.parse(this.responseText);
+    for(let i=0; i < json.length; ++i) {
+      let characterCard = document.createElement("div");
+      characterCard.classList.add("character");
+      characterCard.characterId = json[i].id;
+      characterCard.onclick = function() {
+        open(characterCard.characterId);
+        navigateTo('character');
+      };
+      let nameElement = document.createElement("div");
+      nameElement.textContent = json[i].name;
+      let sexElement = document.createElement("div");
+      sexElement.textContent = json[i].sex;
+      let idElement = document.createElement("div");
+      idElement.textContent = json[i].id;
+      let raceElement = document.createElement("div");
+      raceElement.textContent = json[i].race;
+      let proficiencyElement = document.createElement("div");
+      proficiencyElement.textContent = json[i].proficiency;
+
+      characterCard.appendChild(nameElement);
+      characterCard.appendChild(idElement);
+      characterCard.appendChild(sexElement);
+      characterCard.appendChild(raceElement);
+      characterCard.appendChild(proficiencyElement);
+      characterList.appendChild(characterCard);
+    }
+  });
+  request.open("GET", "/rest/character");
+  request.setRequestHeader("Accept", "application/json;charset=UTF-8");
+  request.send();
+}
+
+function save() {
   let attacksAndParries = getAttacksAndParries();
   let abilities = exportAbilities();
   let items = exportItems();
   let weapons = exportWeapons();
-  let request = new XMLHttpRequest()
+  let request = new XMLHttpRequest();
 
-  request.open("POST", "/character");
-  request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+  if (characterLocationUrl == null) {
+    request.open("POST", "/rest/character");
+
+    request.onload = function() {
+      characterLocationUrl = request.getResponseHeader("Location");
+    };
+  } else {
+    request.open("PUT", characterLocationUrl);
+  }
+  request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   request.send(JSON.stringify({
     "name": getValue("name"),
     "age": getValue("age", 0),
@@ -56,6 +115,36 @@ function exportData() {
   }, null, 4));
 }
 
+function open(characterId) {
+  let request = new XMLHttpRequest();
+
+  request.addEventListener("load", function() {
+    let json = JSON.parse(this.responseText);
+    setValue("name", json["name"]);
+    setValue("age", json["age"]);
+    setValue("race", json["race"]);
+    setValue("sex", json["sex"]);
+    setValue("main-hand", json["mainHand"]);
+    setValue("proficiency", json["proficiency"]);
+    setValue("strength", json["strength"]);
+    setValue("physicality", json["physicality"]);
+    setValue("dexterity", json["dexterity"]);
+    setValue("intelligence", json["intelligence"]);
+    setValue("spirituality", json["spirituality"]);
+    setValue("charisma", json["charisma"]);
+    setValue("money", json["money"]);
+    setValue("extra-fighting-capacity", json["extraFightingCapacity"]);
+    setValue("extra-hit-points", json["extraHitPoints"]);
+  });
+
+  request.open("GET", "/rest/character/" + characterId);
+  request.send();
+}
+
+function setValue(elementId, value) {
+  document.getElementById(elementId).value = value;
+}
+
 function exportItems() {
   let items = document.getElementById("items");
   let exportData = [];
@@ -63,7 +152,7 @@ function exportItems() {
   for (let i = 1; i < items.rows.length; ++i) {
     let itemName = items.rows[i].cells[0].childNodes[0].value;
     let itemValue = parseInt(items.rows[i].cells[1].childNodes[0].value);
-    if(!itemValue) {
+    if (!itemValue) {
       itemValue = 0;
     }
     exportData.push({
@@ -75,7 +164,6 @@ function exportItems() {
 }
 
 function exportWeapons() {
-
   let weapons = document.getElementById("weapons");
   let exportData = [];
 
@@ -117,7 +205,7 @@ function getValue(element, defaultValue) {
       return integerValue;
     }
   } catch (err) {}
-  if(!value && defaultValue != null) {
+  if (!value && defaultValue != null) {
     return defaultValue;
   } else {
     return value;
@@ -417,11 +505,13 @@ function recalc() {
 }
 
 function reroll() {
+  characterLocationUrl = null;
   rollAge();
   rollStats();
   rollHand();
   document.getElementById("money").value = rollMoney();
   previousRace = document.getElementById("race").value;
+  attacksAndParries();
 }
 
 function rollHand() {

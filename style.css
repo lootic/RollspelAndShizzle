@@ -19,8 +19,34 @@ select {
   border: 1px solid black;
 }
 
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+.toolbar {
+  padding: 8px;
+  margin: 0px;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  background-color: gray;
+}
+
 .table-header {
   text-align: right;
+}
+
+.character {
+
+  color: white;
+  background-color: gray;
+  float: left;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 22em;
+  cursor: pointer;
 }
 
 .card {
@@ -28,6 +54,7 @@ select {
   margin-left: 16px;
   margin-right: 16px;
   margin-bottom: 16px;
+  width: 440px;
 }
 
 .wide {
@@ -37,4 +64,8 @@ select {
 
 body {
   font-family: sans-serif;
+}
+
+.content {
+  padding-top: 60px;
 }
