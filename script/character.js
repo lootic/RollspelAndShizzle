@@ -1,9 +1,9 @@
 // TODO
-// - free ability points should automatically show up
+// - free ability points should automatically show up somehow
 
 // validation
 // - validate ability values(should not be bigger than base stat)
-// - validate spendt money isnt bigger than
+// - validate spent money isnt bigger than
 // - validate that attacks and parries doesn't add up to more than the total
 //   fightingCapacity
 // - validate that the amount of used abilityPoints doesn't add up to more than
@@ -12,6 +12,8 @@
 // - level up button
 // - infer values into all fields from a json document
 // - show list of characters
+
+// - do something smart about money management
 
 // - add spell/prayer
 // - craete more sophisticated dropdowns which shows more information in table form
@@ -40,7 +42,7 @@ function listCharacters() {
   characterList.innerHTML = '';
   request.addEventListener("load", function() {
     let json = JSON.parse(this.responseText);
-    for(let i=0; i < json.length; ++i) {
+    for (let i = 0; i < json.length; ++i) {
       let characterCard = document.createElement("div");
       characterCard.classList.add("character");
       characterCard.characterId = json[i].id;
@@ -70,6 +72,18 @@ function listCharacters() {
   request.open("GET", "/rest/character");
   request.setRequestHeader("Accept", "application/json;charset=UTF-8");
   request.send();
+}
+
+function exportArmour() {
+  return {
+    "head": document.getElementById("head-armour").value,
+    "leftArm": document.getElementById("left-arm-armour").value,
+    "rightArm": document.getElementById("right-arm-armour").value,
+    "torso": document.getElementById("torso-armour").value,
+    "stomach": document.getElementById("stomach-armour").value,
+    "leftLeg": document.getElementById("left-leg-armour").value,
+    "rightLeg": document.getElementById("right-leg-armour").value
+  }
 }
 
 function save() {
@@ -111,15 +125,21 @@ function save() {
     "parries": attacksAndParries.parries,
     "items": items,
     "weapons": weapons,
-    "abilities": abilities
+    "abilities": abilities,
+    "armour": exportArmour()
   }, null, 4));
 }
 
 function open(characterId) {
   let request = new XMLHttpRequest();
 
+  characterLocationUrl = '/rest/character/' + characterId
+
+
   request.addEventListener("load", function() {
     let json = JSON.parse(this.responseText);
+    loadAbilities(json["abilities"]);
+    loadItems(json["items"]);
     setValue("name", json["name"]);
     setValue("age", json["age"]);
     setValue("race", json["race"]);
@@ -135,10 +155,79 @@ function open(characterId) {
     setValue("money", json["money"]);
     setValue("extra-fighting-capacity", json["extraFightingCapacity"]);
     setValue("extra-hit-points", json["extraHitPoints"]);
+    attacksAndParries();
+    loadAttacksAndParries(json["attacks"], json["parries"]);
+    loadWeapons(json["weapons"]);
+    loadArmour(json["armour"]);
+    recalc();
   });
 
   request.open("GET", "/rest/character/" + characterId);
   request.send();
+}
+
+function loadAbilities(abilities) {
+  let abilitiesElement = document.getElementById("abilities");
+  let numberOfRows = abilitiesElement.rows.length;
+  for (let i = 1; i < numberOfRows; ++i) {
+    abilitiesElement.deleteRow(1);
+  }
+  for (let i = 0; i < abilities.length; ++i) {
+    let ability = addAbility();
+    ability.selectNode.value = abilities[i].name;
+    ability.value.value = abilities[i].value;
+  }
+}
+
+function loadItems(items) {
+  let itemsElement = document.getElementById("items");
+
+  let numberOfRows = itemsElement.rows.length;
+  for (let i = 1; i < numberOfRows; ++i) {
+    itemsElement.deleteRow(1);
+  }
+  for (let i = 0; i < items.length; ++i) {
+    let item = addItem();
+    item.selectNode.value = items[i].name;
+    item.value.value = items[i].value;
+  }
+}
+
+function loadAttacksAndParries(attacks, parries) {
+  let attacksAndParriesElement = document.getElementById("attacks-and-parries");
+  for (let i = 1; i < attacksAndParriesElement.rows.length; ++i) {
+
+    let attackColumn = attacksAndParriesElement.rows[i].cells[0].childNodes[0];
+    if (attackColumn) {
+      attackColumn.value = attacks[i - 1];
+    }
+
+    let parriesColumn = attacksAndParriesElement.rows[i].cells[1].childNodes[0];
+    if (parriesColumn) {
+      parriesColumn.value = parries[i - 1];
+    }
+  }
+}
+
+function loadArmour(armour) {
+  document.getElementById("head-armour").value = armour["head"];
+  document.getElementById("left-arm-armour").value = armour["leftArm"];
+  document.getElementById("right-arm-armour").value = armour["rightArm"];
+  document.getElementById("torso-armour").value = armour["torso"];
+  document.getElementById("stomach-armour").value = armour["stomach"];
+  document.getElementById("left-leg-armour").value = armour["leftLeg"];
+  document.getElementById("left-leg-armour").value = armour["rightLeg"];
+}
+
+function loadWeapons(weapons) {
+  let weaponsElement = document.getElementById("weapons");
+  let numberOfRows = weaponsElement.rows.length;
+  for (let i = 1; i < numberOfRows; ++i) {
+    weaponsElement.deleteRow(1);
+  }
+  for (let i = 0; i < weapons.length; ++i) {
+    addWeapon().value = weapons[i].name;
+  }
 }
 
 function setValue(elementId, value) {
@@ -771,6 +860,11 @@ function addAbility() {
   abilityValueCell.appendChild(abilityValue);
 
   addRemoveButton(abilities, row, row.insertCell());
+
+  return {
+    "selectNode": selectNode,
+    "value": abilityValue
+  };
 }
 
 function calculateWeaponsWeight() {
@@ -884,6 +978,10 @@ function addItem() {
   let value = createStatElement();
   valueCell.appendChild(value);
   addRemoveButton(items, row, row.insertCell());
+  return {
+    "selectNode": selectNode,
+    "value": value
+  };
 }
 
 function addWeapon() {
@@ -901,6 +999,8 @@ function addWeapon() {
 
   let removeCell = row.insertCell();
   addRemoveButton(weapons, row, removeCell);
+
+  return selectNode;
 }
 
 function addRemoveButton(table, row, cell) {
