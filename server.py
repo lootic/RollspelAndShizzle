@@ -27,11 +27,21 @@ def validate_character_id(character):
         return 'Character does not exist', 404
     return True
 
+def get_file_from_folder(file_name, folder, valid_file_names):
+    if(not file_name in valid_file_names):
+        return 'The file "' + file_name + '" does not exist', 404
+    else:
+        return get_file(folder + '/' + file_name)
+
 if __name__ == '__main__':
-    character_folder = 'storage'
+    character_folder = 'storage/character'
+    adventure_folder = 'storage/adventure'
+    script_folder = "script"
+    language_folder = "language"
     valid_script_file_names = ['race_data.js', 'dice.js', 'abilities_data.js',
-        'weapons_data.js', 'armour_data.js', 'character.js',
-        'equipment_data.js', 'proficiency_data.js']
+        'weapons_data.js', 'armour_data.js', 'character.js', 'rest.js',
+        'equipment_data.js', 'proficiency_data.js', 'adventure.js']
+    valid_language_file_names = ["swedish.json"]
     uuid_regex = re.compile('^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$')
     app = Flask(__name__)
 
@@ -39,10 +49,11 @@ if __name__ == '__main__':
 
     @app.route("/script/<file_name>")
     def javascript(file_name):
-        if(not file_name in valid_script_file_names):
-            return 'The file "' + file_name + '" does not exist', 404
-        else:
-            return get_file('script/' + file_name)
+        return get_file_from_folder(file_name, script_folder, valid_script_file_names)
+
+    @app.route("/language/<language>")
+    def getLanguage(language):
+        return get_file_from_folder(language + '.json', language_folder, valid_language_file_names)
 
     @app.route("/style.css")
     def style():

@@ -1,0 +1,23 @@
+{
+  "human": "människa",
+  "elven": "alv",
+  "dwarf": "dvärg",
+  "half-troll": "halvtroll",
+  "half-elven": "halvalv",
+  "hobbit": "halvlängdsman",
+  "warrior": "krigare",
+  "knight": "riddare",
+  "wizard": "trollkarl",
+  "sword-magician": "svärdsmagiker",
+  "priest": "präst",
+  "holy-warrior": "helig krigare",
+  "thief": "tjuv",
+  "hunter": "jägare",
+  "messenger": "budbärare",
+  "craftsman": "hantverkare",
+  "merchant": "handelsresande",
+  "scholar": "lärd",
+  "entertainer": "underhållare",
+  "downfall": "nederbörd",
+  "clear": "klart"
+}

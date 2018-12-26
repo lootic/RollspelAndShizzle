@@ -7,28 +7,109 @@
   <script src="/script/equipment_data.js"></script>
   <script src="/script/proficiency_data.js"></script>
   <script src="/script/character.js"></script>
+  <script src="/script/rest.js"></script>
   <script src="/script/race_data.js"></script>
   <script src="/script/weapons_data.js"></script>
   <script src="/script/dice.js"></script>
+  <script src="/script/adventure.js"></script>
   <meta charset="UTF-8">
 </head>
 
 <body>
+  <div id="adventure-list" style="display:none;">
+    <div class="toolbar">
+      <h2 style="margin:0px;">Äventyr
+        <button onclick="navigateTo('character-list');listCharacters();">Karaktärer</button>
+        <button onclick="navigateTo('adventure');listCharactersForAdventure();">Skapa ny</button>
+      </h2>
+    </div>
+    <div id="adventure-list-content" class="content">
+    </div>
+  </div>
+  <div id="adventure">
+    <div class="toolbar">
+      <h2 style="margin:0px;">Äventyr
+        <button onclick="navigateTo('adventure-list');">Lista</button>
+      </h2>
+    </div>
+    <div class="content">
+      <div style="width: 100%;">
+        <div class="card">
+          <h3>Tid
+          <input id="hours" class="stat wide" type="text"></input>&nbsp;<button onclick="addHours();">Spola</button>
+          </h3>
+          <div id="date"></div>
+        </div>
+        <div class="card">
+          <h3 style="padding-left: 9em;">Väder</h3>
+          <table>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Meter över havsytan&nbsp;</h4></td>
+              <td><input id="height-above-sea-level" class="stat wide" type="text"></input>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Latitud&nbsp;</h4></td>
+              <td><input id="latitude" class="stat wide" type="text"></input>
+              </td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Nederbörd&nbsp;</h4></td>
+              <td><span id="downfall">0</span>mm/h</td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Temperatur&nbsp;</h4></td>
+              <td><span id="temperature">0</span>C</td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Molnighet&nbsp;</h4></td>
+              <td><span id="cloudiness">0</span>%</td>
+            </tr>
+            <tr>
+              <td style="text-align: right;">
+                <h4>Vind&nbsp;</h4></td>
+              <td><span id="wind">0</span>m/s</td>
+            </tr>
+          </table>
+
+
+        </div>
+      </div>
+      <div class="card">
+        <h3>Karaktärer<button onclick="addCharacter();">Lägg till</button></h3>
+        <table id="adventure-character-list">
+          <tr>
+            <th>Namn</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
   <div id="character-list" style="display:none;">
     <div class="toolbar">
+      <h2 style="margin:0px;">Karaktärer
+      <button onclick="navigateTo('adventure-list');listCharacters();">Äventyr</button>
       <button onclick="reroll();navigateTo('character');">Skapa ny</button>
+    </h2>
     </div>
     <div id="character-list-content" class="content">
     </div>
   </div>
-  <div id="character">
+  <div id="character" style="display:none;">
     <div class="toolbar">
+      <h2 style="margin:0px;">Karaktärer
       <button onclick="navigateTo('character-list');listCharacters();">Lista</button>
       <button onclick="save();">Spara</button>
+    </h2>
     </div>
     <div class="content">
       <div class="card">
-        <h2>Karaktär</h2>
+        <h3>Karaktär</h3>
         <table>
           <tr>
             <td class="table-header">
@@ -43,7 +124,7 @@
               Yrke
             </td>
             <td>
-              <select id="proficiency" onchange="attacksAndParries();recalc()">
+              <select id="proficiency" onchange="attacksAndParries();recalc();">
             <option value="warrior">Krigare</option>
             <option value="knight">Riddare</option>
             <option value="wizard">Trollkarl</option>
@@ -80,7 +161,7 @@
               Ålder
             </td>
             <td>
-              <input id="age" class="stat wide" type="text" onkeyup="changeAge();recalc()"></input>
+              <input id="age" class="stat wide" type="text" onkeyup="changeAge();recalc();"></input>
             </td>
           </tr>
 
@@ -138,21 +219,21 @@
               Pengar
             </td>
             <td>
-              <input id="money" class="stat wide" type="text" onkeyup="recalc()"></input>
+              <input id="money" class="stat wide" type="text" onkeyup="recalc();"></input>
               <input id="spent" class="stat wide" type="text" disabled></input>
             </td>
           </tr>
         </table>
       </div>
       <div class="card">
-        <h2>Grundegenskaper</h2>
+        <h3>Grundegenskaper</h3>
         <table>
           <tr>
             <td class="table-header">
               <span>Styrka</span>
             </td>
             <td>
-              <input id="strength" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="strength" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -160,7 +241,7 @@
               <span>Fysik</span>
             </td>
             <td>
-              <input id="physicality" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="physicality" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -168,7 +249,7 @@
               <span>Smidighet</span>
             </td>
             <td>
-              <input id="dexterity" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="dexterity" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -176,7 +257,7 @@
               <span>Storlek</span>
             </td>
             <td>
-              <input id="size" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="size" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -184,7 +265,7 @@
               <span>Intelligens</span>
             </td>
             <td>
-              <input id="intelligence" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="intelligence" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -192,7 +273,7 @@
               <span>Psyke</span>
             </td>
             <td>
-              <input id="psyche" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="psyche" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -200,7 +281,7 @@
               <span>Spiritus</span>
             </td>
             <td>
-              <input id="spirituality" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="spirituality" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
           <tr>
@@ -208,13 +289,13 @@
               <span>Karisma</span>
             </td>
             <td>
-              <input id="charisma" class="stat" type="text" onkeyup="recalc()"></input>
+              <input id="charisma" class="stat" type="text" onkeyup="recalc();"></input>
             </td>
           </tr>
         </table>
       </div>
       <div class="card">
-        <h2>Sekundära egenskaper</h2>
+        <h3>Sekundära egenskaper</h3>
         <table>
           <tr>
             <td class="table-header">
@@ -267,7 +348,7 @@
         </table>
       </div>
       <div class="card">
-        <h2>Kroppspoäng</h2>
+        <h3>Kroppspoäng</h3>
         <table>
           <tr>
             <td class="table-header">
@@ -285,7 +366,7 @@
           </tr>
           <tr>
             <th class="table-header">Kroppsdel</th>
-            <th class="table-header">KP</th>
+            <th class="table-header" style="text-align: center;">KP</th>
             <th style="text-align: left;">Rustning</th>
             <th>RV</th>
           </tr>
@@ -396,7 +477,7 @@
         </table>
       </div>
       <div class="card">
-        <h2>Stridskapacitet</h2>
+        <h3>Stridskapacitet</h3>
         <table>
           <tr>
             <td class="table-header">
@@ -427,7 +508,7 @@
         </table>
       </div>
       <div class="card">
-        <h2>Färdigheter</h2>
+        <h3>Färdigheter <button onclick="addAbility()">Lägg till</button></h3>
         <table>
           <tr>
             <td>
@@ -440,14 +521,15 @@
         </table>
         <table id="abilities">
           <tr>
-            <th>Färdighet</th>
-            <th>FV</th>
+            <th style="text-align: left;">Färdighet</th>
+            <th style="text-align: center;">FV</th>
           </tr>
         </table>
-        <button onclick="addAbility()">Lägg till</button>
       </div>
       <div class="card">
-        <h2>Utrustning</h2>
+        <h3>Utrustning
+        <button onclick="addItem();">Lägg till</button>
+        </h3>
         <table>
           <tr>
             <td>
@@ -460,20 +542,20 @@
         </table>
         <table id="items">
           <tr>
-            <th>Föremål</th>
+            <th style="text-align: left;">Föremål</th>
             <th>#</th>
           </tr>
         </table>
-        <button onclick="addItem();">Lägg till</button>
       </div>
       <div class="card">
-        <h2>Vapen och Sköldar</h2>
+        <h3>Vapen och Sköldar
+          <button onclick="addWeapon();recalc();">Lägg till</button>
+        </h3>
         <table id="weapons">
           <tr>
-            <th>Vapen</th>
+            <th style="text-align: left;">Vapen</th>
           </tr>
         </table>
-        <button onclick="addWeapon();recalc();">Lägg till</button>
       </div>
     </div>
   </div>

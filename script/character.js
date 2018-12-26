@@ -1,5 +1,6 @@
 // TODO
 // - free ability points should automatically show up somehow
+// - extra ability points
 
 // validation
 // - validate ability values(should not be bigger than base stat)
@@ -23,55 +24,37 @@ let previousRace = null;
 let previousAge = null;
 let characterLocationUrl = null;
 
-function navigateTo(id) {
-  elementIds = ['character', 'character-list'];
-  for (let i = 0; i < elementIds.length; ++i) {
-    let elementId = elementIds[i];
-    let element = document.getElementById(elementId);
-    if (elementId == id) {
-      element.style.display = 'inline-block';
-    } else {
-      element.style.display = 'none';
-    }
-  }
-}
-
 function listCharacters() {
   let characterList = document.getElementById('character-list-content');
-  var request = new XMLHttpRequest();
   characterList.innerHTML = '';
-  request.addEventListener("load", function() {
-    let json = JSON.parse(this.responseText);
-    for (let i = 0; i < json.length; ++i) {
-      let characterCard = document.createElement("div");
-      characterCard.classList.add("character");
-      characterCard.characterId = json[i].id;
-      characterCard.onclick = function() {
-        open(characterCard.characterId);
-        navigateTo('character');
-      };
-      let nameElement = document.createElement("div");
-      nameElement.textContent = json[i].name;
-      let sexElement = document.createElement("div");
-      sexElement.textContent = json[i].sex;
-      let idElement = document.createElement("div");
-      idElement.textContent = json[i].id;
-      let raceElement = document.createElement("div");
-      raceElement.textContent = json[i].race;
-      let proficiencyElement = document.createElement("div");
-      proficiencyElement.textContent = json[i].proficiency;
+  listCharactersRest(function(json) {
+      for (let i = 0; i < json.length; ++i) {
+        let characterCard = document.createElement("div");
+        characterCard.classList.add("character");
+        characterCard.characterId = json[i].id;
+        characterCard.onclick = function() {
+          open(characterCard.characterId);
+          navigateTo('character');
+        };
+        let nameElement = document.createElement("div");
+        nameElement.textContent = json[i].name;
+        let sexElement = document.createElement("div");
+        sexElement.textContent = json[i].sex;
+        let idElement = document.createElement("div");
+        idElement.textContent = json[i].id;
+        let raceElement = document.createElement("div");
+        raceElement.textContent = json[i].race;
+        let proficiencyElement = document.createElement("div");
+        proficiencyElement.textContent = json[i].proficiency;
 
-      characterCard.appendChild(nameElement);
-      characterCard.appendChild(idElement);
-      characterCard.appendChild(sexElement);
-      characterCard.appendChild(raceElement);
-      characterCard.appendChild(proficiencyElement);
-      characterList.appendChild(characterCard);
-    }
-  });
-  request.open("GET", "/rest/character");
-  request.setRequestHeader("Accept", "application/json;charset=UTF-8");
-  request.send();
+        characterCard.appendChild(nameElement);
+        characterCard.appendChild(idElement);
+        characterCard.appendChild(sexElement);
+        characterCard.appendChild(raceElement);
+        characterCard.appendChild(proficiencyElement);
+        characterList.appendChild(characterCard);
+      }
+    });
 }
 
 function exportArmour() {
@@ -130,14 +113,21 @@ function save() {
   }, null, 4));
 }
 
+function navigateTo(id) {
+  elementIds = ['character', 'character-list', 'adventure', 'adventure-list'];
+  for (let i = 0; i < elementIds.length; ++i) {
+    let elementId = elementIds[i];
+    let element = document.getElementById(elementId);
+    if (elementId == id) {
+      element.style.display = 'inline-block';
+    } else {
+      element.style.display = 'none';
+    }
+  }
+}
+
 function open(characterId) {
-  let request = new XMLHttpRequest();
-
-  characterLocationUrl = '/rest/character/' + characterId
-
-
-  request.addEventListener("load", function() {
-    let json = JSON.parse(this.responseText);
+  getCharacterRest(characterId, function(json) {
     loadAbilities(json["abilities"]);
     loadItems(json["items"]);
     setValue("name", json["name"]);
@@ -161,9 +151,6 @@ function open(characterId) {
     loadArmour(json["armour"]);
     recalc();
   });
-
-  request.open("GET", "/rest/character/" + characterId);
-  request.send();
 }
 
 function loadAbilities(abilities) {
@@ -196,12 +183,10 @@ function loadItems(items) {
 function loadAttacksAndParries(attacks, parries) {
   let attacksAndParriesElement = document.getElementById("attacks-and-parries");
   for (let i = 1; i < attacksAndParriesElement.rows.length; ++i) {
-
     let attackColumn = attacksAndParriesElement.rows[i].cells[0].childNodes[0];
     if (attackColumn) {
       attackColumn.value = attacks[i - 1];
     }
-
     let parriesColumn = attacksAndParriesElement.rows[i].cells[1].childNodes[0];
     if (parriesColumn) {
       parriesColumn.value = parries[i - 1];
@@ -1283,6 +1268,7 @@ function lookupAbilityPoints(stat) {
 }
 
 window.onload = function() {
+  getLanguageRest("swedish");
   populateArmourOptions();
   reroll();
   recalc();
