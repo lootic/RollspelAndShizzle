@@ -1,0 +1,52 @@
+{
+    "abilities": [],
+    "age": 102,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "charisma": 10,
+    "dexterity": 9,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 10,
+    "items": [
+        {
+            "name": "Underkl\u00e4der",
+            "value": 1
+        }
+    ],
+    "mainHand": "right",
+    "money": 50,
+    "name": "Nirres dv\u00e4rg",
+    "parries": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "physicality": 16,
+    "proficiency": "warrior",
+    "psyche": 13,
+    "race": "dwarf",
+    "sex": "male",
+    "size": 6,
+    "spirituality": 9,
+    "strength": 14,
+    "weapons": [
+        {
+            "name": "Klubba"
+        }
+    ]
+}

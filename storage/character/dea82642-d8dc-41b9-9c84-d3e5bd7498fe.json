@@ -1,0 +1,125 @@
+{
+    "abilities": [
+        {
+            "name": "Geografi",
+            "value": 2
+        },
+        {
+            "name": "Rida",
+            "value": 2
+        },
+        {
+            "name": "\u00d6verlevnad",
+            "value": 2
+        },
+        {
+            "name": "Avv\u00e4pna",
+            "value": 8
+        },
+        {
+            "name": "F\u00f6rsta hj\u00e4lpen",
+            "value": 7
+        },
+        {
+            "name": "Kl\u00e4ttra",
+            "value": 1
+        },
+        {
+            "name": "K\u00f6psl\u00e5",
+            "value": 5
+        }
+    ],
+    "age": 25,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        14,
+        0,
+        0,
+        0
+    ],
+    "charisma": 10,
+    "dexterity": 11,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 10,
+    "items": [
+        {
+            "name": "Oljelykta",
+            "value": 1
+        },
+        {
+            "name": "Byxor",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derskor",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 1
+        },
+        {
+            "name": "Skjorta",
+            "value": 1
+        },
+        {
+            "name": "Ryggs\u00e4ck(40l)",
+            "value": 1
+        },
+        {
+            "name": "Vaxljus",
+            "value": 1
+        },
+        {
+            "name": "Flinta och st\u00e5l",
+            "value": 1
+        },
+        {
+            "name": "L\u00f6nnficka",
+            "value": 1
+        },
+        {
+            "name": "S\u00e4ck(50l)",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derb\u00e4dd",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "right",
+    "money": 52,
+    "name": "Warg",
+    "parries": [
+        0,
+        0,
+        0,
+        0
+    ],
+    "physicality": 15,
+    "proficiency": "warrior",
+    "psyche": 14,
+    "race": "human",
+    "sex": "male",
+    "size": 15,
+    "spirituality": 9,
+    "strength": 16,
+    "weapons": [
+        {
+            "name": "Spikklubba"
+        },
+        {
+            "name": "Kroppssk\u00f6ld"
+        }
+    ]
+}

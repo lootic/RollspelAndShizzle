@@ -9,10 +9,9 @@
 //   fightingCapacity
 // - validate that the amount of used abilityPoints doesn't add up to more than
 //   the amount of ability points available
+// - make it possible to set level
 
-// - level up button
 // - infer values into all fields from a json document
-// - show list of characters
 
 // - do something smart about money management
 
@@ -28,33 +27,33 @@ function listCharacters() {
   let characterList = document.getElementById('character-list-content');
   characterList.innerHTML = '';
   listCharactersRest(function(json) {
-      for (let i = 0; i < json.length; ++i) {
-        let characterCard = document.createElement("div");
-        characterCard.classList.add("character");
-        characterCard.characterId = json[i].id;
-        characterCard.onclick = function() {
-          open(characterCard.characterId);
-          navigateTo('character');
-        };
-        let nameElement = document.createElement("div");
-        nameElement.textContent = json[i].name;
-        let sexElement = document.createElement("div");
-        sexElement.textContent = json[i].sex;
-        let idElement = document.createElement("div");
-        idElement.textContent = json[i].id;
-        let raceElement = document.createElement("div");
-        raceElement.textContent = json[i].race;
-        let proficiencyElement = document.createElement("div");
-        proficiencyElement.textContent = json[i].proficiency;
+    for (let i = 0; i < json.length; ++i) {
+      let characterCard = document.createElement("div");
+      characterCard.classList.add("character");
+      characterCard.characterId = json[i].id;
+      characterCard.onclick = function() {
+        open(characterCard.characterId);
+        navigateTo('character');
+      };
+      let nameElement = document.createElement("div");
+      nameElement.textContent = json[i].name;
+      let sexElement = document.createElement("div");
+      sexElement.textContent = json[i].sex;
+      let idElement = document.createElement("div");
+      idElement.textContent = json[i].id;
+      let raceElement = document.createElement("div");
+      raceElement.textContent = json[i].race;
+      let proficiencyElement = document.createElement("div");
+      proficiencyElement.textContent = json[i].proficiency;
 
-        characterCard.appendChild(nameElement);
-        characterCard.appendChild(idElement);
-        characterCard.appendChild(sexElement);
-        characterCard.appendChild(raceElement);
-        characterCard.appendChild(proficiencyElement);
-        characterList.appendChild(characterCard);
-      }
-    });
+      characterCard.appendChild(nameElement);
+      characterCard.appendChild(idElement);
+      characterCard.appendChild(sexElement);
+      characterCard.appendChild(raceElement);
+      characterCard.appendChild(proficiencyElement);
+      characterList.appendChild(characterCard);
+    }
+  });
 }
 
 function exportArmour() {
@@ -91,6 +90,7 @@ function save() {
     "age": getValue("age", 0),
     "race": previousRace,
     "sex": getValue("sex"),
+    "level": getValue("level"),
     "mainHand": getValue("main-hand"),
     "proficiency": getValue("proficiency"),
     "strength": getValue("strength", 0),
@@ -101,7 +101,7 @@ function save() {
     "intelligence": getValue("intelligence", 0),
     "spirituality": getValue("spirituality", 0),
     "charisma": getValue("charisma", 0),
-    "money": getValue("money", 0) - getValue("spent", 0),
+    "money": characterLocationUrl == null ? getValue("money", 0) - getValue("spent", 0) : getValue("money", 0),
     "extraFightingCapacity": getValue("extra-fighting-capacity", 0),
     "extraHitPoints": getValue("extra-hit-points", 0),
     "attacks": attacksAndParries.attacks,
@@ -135,6 +135,7 @@ function open(characterId) {
     setValue("race", json["race"]);
     setValue("sex", json["sex"]);
     setValue("main-hand", json["mainHand"]);
+    setValue("size", json["size"]);
     setValue("proficiency", json["proficiency"]);
     setValue("strength", json["strength"]);
     setValue("physicality", json["physicality"]);
@@ -145,6 +146,7 @@ function open(characterId) {
     setValue("money", json["money"]);
     setValue("extra-fighting-capacity", json["extraFightingCapacity"]);
     setValue("extra-hit-points", json["extraHitPoints"]);
+    setValue("level", json["level"]);
     attacksAndParries();
     loadAttacksAndParries(json["attacks"], json["parries"]);
     loadWeapons(json["weapons"]);
@@ -286,9 +288,6 @@ function getValue(element, defaultValue) {
   }
 }
 
-function importData() {
-
-}
 
 function changeRaces() {
   let race = document.getElementById("race").value;
@@ -552,6 +551,7 @@ function ancientStatModifier(stat) {
 }
 
 function recalc() {
+  let level = getValue("level");
   let strength = getIntegerValue("strength");
   let physicality = getIntegerValue("physicality");
   let dexterity = getIntegerValue("dexterity");
@@ -573,7 +573,7 @@ function recalc() {
   terrorModification(psyche);
   initiativeModification(dexterity);
   equipLoad(strength);
-  abilityPoints(strength, physicality, dexterity, size, intelligence, psyche, spirituality, charisma, age, race, proficiency);
+  abilityPoints(strength, physicality, dexterity, size, intelligence, psyche, spirituality, charisma, age, race, proficiency, level);
   calculateItemCosts();
   armourPoints();
 }
@@ -1072,8 +1072,8 @@ function isProficientWith(proficiency, abilityName) {
   return proficiencyLookupTable[proficiency].proficiencyAbilities.includes(abilityName);
 }
 
-function abilityPoints(strength, physicality, dexterity, size, intelligence, psyche, spirituality, charisma, age, race, proficiency) {
-  let abilityPoints = abilityPointAgeModifier(age, race) * (lookupAbilityPoints(strength) +
+function abilityPoints(strength, physicality, dexterity, size, intelligence, psyche, spirituality, charisma, age, race, proficiency, level) {
+  let abilityPoints = (lookupAbilityPoints(strength) +
     lookupAbilityPoints(physicality) +
     lookupAbilityPoints(dexterity) +
     lookupAbilityPoints(size) +
@@ -1081,10 +1081,25 @@ function abilityPoints(strength, physicality, dexterity, size, intelligence, psy
     lookupAbilityPoints(psyche) +
     lookupAbilityPoints(spirituality) +
     lookupAbilityPoints(charisma));
+  abilityPoints *= (abilityPointAgeModifier(age, race) + abilityPointLevelModifier(level));
   if (proficiency === 'scholar') {
     abilityPoints *= 2;
   }
   document.getElementById('ability-points').value = Math.floor(abilityPoints) - totalAbilityCost(race, proficiency);
+}
+
+function abilityPointLevelModifier(level) {
+  if (level === 'amateur') {
+    return 0;
+  } else if (level === 'apprentice') {
+    return 1;
+  } else if (level === 'practitioner') {
+    return 2;
+  } else if (level === 'master') {
+    return 3;
+  } else if (level === 'legend') {
+    return 4;
+  }
 }
 
 function abilityPointAgeModifier(age, race) {

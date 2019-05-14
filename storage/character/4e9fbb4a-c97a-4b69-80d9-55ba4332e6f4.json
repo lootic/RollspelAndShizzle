@@ -1,0 +1,84 @@
+{
+    "abilities": [
+        {
+            "name": "Spela instrument",
+            "value": 10
+        },
+        {
+            "name": "Tala fr\u00e4mmande spr\u00e5k",
+            "value": 3
+        },
+        {
+            "name": "Tala fr\u00e4mmande spr\u00e5k",
+            "value": 3
+        },
+        {
+            "name": "Tala fr\u00e4mmande spr\u00e5k",
+            "value": 4
+        }
+    ],
+    "age": 20,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        5
+    ],
+    "charisma": 12,
+    "dexterity": 10,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 11,
+    "items": [
+        {
+            "name": "Byxor",
+            "value": 1
+        },
+        {
+            "name": "Skjorta",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Fl\u00f6jt",
+            "value": 1
+        },
+        {
+            "name": "Jacka",
+            "value": 1
+        },
+        {
+            "name": "M\u00f6ssa",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derst\u00f6vlar, mjuka",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "left",
+    "money": 300,
+    "name": "Sten Oskarsson",
+    "parries": [
+        3
+    ],
+    "physicality": 9,
+    "proficiency": "entertainer",
+    "psyche": 11,
+    "race": "human",
+    "sex": "male",
+    "size": 14,
+    "spirituality": 4,
+    "strength": 7,
+    "weapons": []
+}

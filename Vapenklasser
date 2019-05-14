@@ -1,0 +1,68 @@
+VAPENKLASSSER
+
+Kniv
+----
+Bleed, +5 ambush, 1 reach, -3 attack, kan användas till defend
+
+Svärd
+-----
+Bleed, kan användas till defend, +3 attack, 2 reach
+
+Kross
+-----
+Ignorerar halv armour, +3 attack om träff, 2 räckvidd
+
+Kätting
+-------
++5 vs defend, 2 räckvidd
+
+Spjut
+-----
+3 reach
+
+Yxa
+---
++5 attack om träff, bleed, 2 räckvidd
+
+Sköld
+-----
++5 defend, kan användas till defend
+
+Projektil
+---------
+Skjut i en rak linje och träffa första målet i den linjen.
+
+HANDLINGAR
+
+Färdighet, använd en godtycklig färdighet, en bön eller en magisk formel.
+
+Försvara, försvara mot inkommande slag, slå en tärning för varje parering,
+välj bästa tärningen (parering-tärnignsslag). Det är ditt försvar denna runda.
+En attack måste slå högre än ditt försvar för att åsamka skada. Du är också
+
+Attackera, slå en tärning för varje attack, din attackstyrka blir differensen
+mellan ditt färdighetsvärde och tärningsslaget.equippad
+
+Spring, förflytta dig på hexagonbrädet till en ny plats.
+
+Bakhåll, titta extra noga på vad ens motståndare gör. Slå en tärning, din ambush
+blir differensen mellan ditt färdighetsvärde och tärningsslaget. Om motståndaren
+gör någon handling förutom att försvara så gör du då en attack mot denna med
+samma värde som differensen.
+
+Free form, rollspela fram en handling, GM väljer vad du ska slå för att lyckas.
+
+HEXAGONSYSTEM
+Varje karaktär är alltid riktad åt ett håll. Om man har en sköld i handen så
+blockar den alla projektiler från detta håll för full skada. När man försvarar
+så blockar man alla slag från de tre hexagoner som är framåt. Om någon
+attackerar rakt bakifrån så får attacken +5.
+
+Man kan bara göra bakhåll samt attackera på rutor som bildas i en kon framåt
+från karaktären.
+
+En karaktär kan alltid rotera sin karaktär gratis under rundan.
+
+RUNDA
+Varje spelare väljer två olika handlingar dolt. Sen slår de en T20 för sina
+handlingar.

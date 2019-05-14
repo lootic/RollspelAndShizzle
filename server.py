@@ -59,7 +59,7 @@ if __name__ == '__main__':
     def style():
         return get_file("style.css")
 
-    @app.route("/rest/character")
+    @app.route("/rest/character", methods=["GET"])
     def list_characters():
         return Response(dump_json(character_list), mimetype='application/json')
 

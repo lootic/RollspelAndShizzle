@@ -1,0 +1,65 @@
+[
+    {
+        "id": "dea82642-d8dc-41b9-9c84-d3e5bd7498fe",
+        "name": "Warg",
+        "proficiency": "warrior",
+        "race": "human",
+        "sex": "male"
+    },
+    {
+        "id": "009d9dff-9f2f-41df-9d5d-295f1bc83997",
+        "name": "Snok",
+        "proficiency": "warrior",
+        "race": "human",
+        "sex": "male"
+    },
+    {
+        "id": "0ff74230-8e55-4a7c-bc46-8995a5238b75",
+        "name": "Melker",
+        "proficiency": "scholar",
+        "race": "hobbit",
+        "sex": "male"
+    },
+    {
+        "id": "d6f24026-7c7d-43f2-bc06-8d1a41aa5273",
+        "name": "Anna",
+        "proficiency": "priest",
+        "race": "half-elven",
+        "sex": "female"
+    },
+    {
+        "id": "872a3448-d785-4cc5-82eb-d6358c9ddefe",
+        "name": "Amanda",
+        "proficiency": "messenger",
+        "race": "human",
+        "sex": "female"
+    },
+    {
+        "id": "4e9fbb4a-c97a-4b69-80d9-55ba4332e6f4",
+        "name": "Sten Oskarsson",
+        "proficiency": "entertainer",
+        "race": "human",
+        "sex": "male"
+    },
+    {
+        "id": "6ed52991-ce1b-49a6-81ab-ee18a456291f",
+        "name": "Morgan Gr\u00f6nmule",
+        "proficiency": "wizard",
+        "race": "human",
+        "sex": "male"
+    },
+    {
+        "id": "4bab1845-c942-472e-b586-43b1e7b119b6",
+        "name": "Ida Trolltunga",
+        "proficiency": "wizard",
+        "race": "human",
+        "sex": "female"
+    },
+    {
+        "id": "27b58e8f-0d3a-4ba6-a19a-8be72b7c7ac2",
+        "name": "Nirres dv\u00e4rg",
+        "proficiency": "warrior",
+        "race": "dwarf",
+        "sex": "male"
+    }
+]

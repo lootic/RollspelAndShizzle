@@ -7,6 +7,10 @@ let equipmentLookUpTable = {
     "price": 50,
     "weight": 0.05
   },
+  "Bandage(1m)": {
+    "price": 10,
+    "weight": 0
+  },
   "Basker": {
     "price": 15,
     "weight": 0
@@ -486,6 +490,10 @@ let equipmentLookUpTable = {
   "Repstege(1m)": {
     "price": 5,
     "weight": 1
+  },
+  "Rock": {
+    "price": 75,
+    "weight": 1.5
   },
   "Ryggsäck(20l)": {
     "price": 20,

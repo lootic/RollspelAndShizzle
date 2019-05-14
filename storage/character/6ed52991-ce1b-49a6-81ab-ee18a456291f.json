@@ -1,0 +1,94 @@
+{
+    "abilities": [
+        {
+            "name": "Kulturk\u00e4nnedom",
+            "value": 5
+        },
+        {
+            "name": "Bluffa",
+            "value": 10
+        },
+        {
+            "name": "L\u00e4rdomsf\u00e4rdigheter",
+            "value": 12
+        },
+        {
+            "name": "L\u00e4rdomsf\u00e4rdigheter",
+            "value": 7
+        },
+        {
+            "name": "L\u00e4rdomsf\u00e4rdigheter",
+            "value": 2
+        }
+    ],
+    "age": 62,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        8
+    ],
+    "charisma": 5,
+    "dexterity": 6,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 14,
+    "items": [
+        {
+            "name": "Byxor",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derskor",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 1
+        },
+        {
+            "name": "Skjorta",
+            "value": 1
+        },
+        {
+            "name": "Ryggs\u00e4ck(40l)",
+            "value": 1
+        },
+        {
+            "name": "K\u00e5pa",
+            "value": 1
+        },
+        {
+            "name": "L\u00f6nnficka",
+            "value": 1
+        }
+    ],
+    "mainHand": "right",
+    "money": -645,
+    "name": "Morgan Gr\u00f6nmule",
+    "parries": [
+        0
+    ],
+    "physicality": 8,
+    "proficiency": "wizard",
+    "psyche": 17,
+    "race": "human",
+    "sex": "male",
+    "size": 15,
+    "spirituality": 17,
+    "strength": 11,
+    "weapons": [
+        {
+            "name": "Spikklubba"
+        },
+        {
+            "name": "Kroppssk\u00f6ld"
+        }
+    ]
+}

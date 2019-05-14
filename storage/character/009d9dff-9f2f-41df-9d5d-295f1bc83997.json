@@ -1,0 +1,120 @@
+{
+    "abilities": [
+        {
+            "name": "Geografi",
+            "value": 2
+        },
+        {
+            "name": "Bluffa",
+            "value": 4
+        },
+        {
+            "name": "\u00d6vertala",
+            "value": 5
+        },
+        {
+            "name": "Finna dolda ting",
+            "value": 5
+        },
+        {
+            "name": "K\u00f6psl\u00e5",
+            "value": 12
+        },
+        {
+            "name": "Rida",
+            "value": 2
+        },
+        {
+            "name": "\u00d6verlevnad",
+            "value": 2
+        },
+        {
+            "name": "R\u00e4kna",
+            "value": 3
+        }
+    ],
+    "age": 25,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        4
+    ],
+    "charisma": 13,
+    "dexterity": 13,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 9,
+    "items": [
+        {
+            "name": "Oljelampa",
+            "value": 2
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Byxor",
+            "value": 1
+        },
+        {
+            "name": "Vattenskinn(20l)",
+            "value": 1
+        },
+        {
+            "name": "Ryggs\u00e4ck(20l)",
+            "value": 1
+        },
+        {
+            "name": "Spade",
+            "value": 1
+        },
+        {
+            "name": "Flinta och st\u00e5l",
+            "value": 1
+        },
+        {
+            "name": "Ylletr\u00f6ja",
+            "value": 1
+        },
+        {
+            "name": "M\u00f6ssa",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derskor",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4dert\u00e4lt(2 personer)",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "right",
+    "money": 91,
+    "name": "Snok den Snokande Snokus",
+    "parries": [
+        8
+    ],
+    "physicality": 10,
+    "proficiency": "merchant",
+    "psyche": 14,
+    "race": "human",
+    "sex": "unknown",
+    "size": 11,
+    "spirituality": 8,
+    "strength": 13,
+    "weapons": [
+        {
+            "name": "Slunga"
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "abilities": [
+        {
+            "name": "F\u00f6rsta hj\u00e4lpen",
+            "value": 11
+        },
+        {
+            "name": "Historia",
+            "value": 2
+        },
+        {
+            "name": "L\u00e4sa/skriva modersm\u00e5l",
+            "value": 8
+        },
+        {
+            "name": "R\u00e4kna",
+            "value": 8
+        }
+    ],
+    "age": 63,
+    "armour": {
+        "head": "thick-clothing",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "thick-clothing",
+        "rightLeg": "none",
+        "stomach": "thick-clothing",
+        "torso": "leather"
+    },
+    "attacks": [
+        9
+    ],
+    "charisma": 5,
+    "dexterity": 10,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 14,
+    "items": [
+        {
+            "name": "S\u00e4rk",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Br\u00e4nnvin",
+            "value": 1
+        },
+        {
+            "name": "Glasflaska(10 doser)",
+            "value": 1
+        },
+        {
+            "name": "Ryggs\u00e4ck(20l)",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "right",
+    "money": -177,
+    "name": "Anna",
+    "parries": [
+        0
+    ],
+    "physicality": 11,
+    "proficiency": "priest",
+    "psyche": 14,
+    "race": "half-elven",
+    "sex": "female",
+    "size": 10,
+    "spirituality": 14,
+    "strength": 7,
+    "weapons": []
+}

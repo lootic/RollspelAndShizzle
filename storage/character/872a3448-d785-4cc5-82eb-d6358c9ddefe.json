@@ -1,0 +1,165 @@
+{
+    "abilities": [
+        {
+            "name": "Rida",
+            "value": 9
+        },
+        {
+            "name": "Orientering",
+            "value": 9
+        },
+        {
+            "name": "Geografi",
+            "value": 7
+        },
+        {
+            "name": "\u00d6verlevnad",
+            "value": 7
+        },
+        {
+            "name": "Jaga",
+            "value": 5
+        },
+        {
+            "name": "Smyga",
+            "value": 5
+        },
+        {
+            "name": "G\u00f6mma sig",
+            "value": 2
+        },
+        {
+            "name": "Geologi",
+            "value": 2
+        },
+        {
+            "name": "L\u00e4sa/skriva modersm\u00e5l",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4sa/skriva fr\u00e4mmande spr\u00e5k",
+            "value": 1
+        },
+        {
+            "name": "Sp\u00e5 v\u00e4der",
+            "value": 1
+        },
+        {
+            "name": "Administration",
+            "value": 1
+        }
+    ],
+    "age": 23,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        9
+    ],
+    "charisma": 9,
+    "dexterity": 18,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 15,
+    "items": [
+        {
+            "name": "Pil",
+            "value": 10
+        },
+        {
+            "name": "Koger(20 pilar)",
+            "value": 1
+        },
+        {
+            "name": "Byxor",
+            "value": 1
+        },
+        {
+            "name": "B\u00e5gstr\u00e4ng",
+            "value": 1
+        },
+        {
+            "name": "B\u00e4lte",
+            "value": 1
+        },
+        {
+            "name": "Filt (tunn)",
+            "value": 1
+        },
+        {
+            "name": "Flinta och st\u00e5l",
+            "value": 1
+        },
+        {
+            "name": "Handskar",
+            "value": 1
+        },
+        {
+            "name": "J\u00e4rngryta(2l)",
+            "value": 1
+        },
+        {
+            "name": "K\u00e5pa",
+            "value": 1
+        },
+        {
+            "name": "L\u00e4derst\u00f6vlar, mjuka",
+            "value": 1
+        },
+        {
+            "name": "Ryggs\u00e4ck(20l)",
+            "value": 1
+        },
+        {
+            "name": "S\u00e4ck(50l)",
+            "value": 1
+        },
+        {
+            "name": "Tr\u00e4slev",
+            "value": 1
+        },
+        {
+            "name": "Tr\u00e4mugg",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Ylletr\u00f6ja",
+            "value": 1
+        },
+        {
+            "name": "Tygb\u00e4dd",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "both",
+    "money": 371,
+    "name": "Amanda",
+    "parries": [
+        4,
+        0
+    ],
+    "physicality": 9,
+    "proficiency": "messenger",
+    "psyche": 16,
+    "race": "human",
+    "sex": "female",
+    "size": 11,
+    "spirituality": 10,
+    "strength": 13,
+    "weapons": [
+        {
+            "name": "Kortb\u00e5ge"
+        }
+    ]
+}

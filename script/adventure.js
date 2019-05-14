@@ -44,9 +44,10 @@ function randomizeWeatherForAnHour() {
 
   baseTemperature = Math.random() * 10 / (baseTemperature * 0.95 + 1);
   let dayOfYear = ((((time - startOfYear) / (1000 * 3600 * 24)) / 365) - 0.05) * 2 * Math.PI;
+  let timeOfDay = time.getHours() / 24 * Math.PI;
 
   let previousTemperature = temperature;
-  temperature = baseTemperature - Math.floor(kilometersAboveSeaLevel / 100) + 50 - Math.abs(latitude) - 20 * Math.cos(dayOfYear);
+  temperature = baseTemperature + 15*Math.sin(timeOfDay) - Math.floor(kilometersAboveSeaLevel / 100) + 30 - Math.abs(latitude) - 20 * Math.cos(dayOfYear);
   document.getElementById("temperature").textContent = Math.round(temperature);
 
   wind = (previousTemperature - temperature) * 10;
@@ -108,10 +109,6 @@ function addHours() {
 }
 
 function list() {
-
-}
-
-function save() {
 
 }
 

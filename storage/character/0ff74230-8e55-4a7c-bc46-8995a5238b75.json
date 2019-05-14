@@ -1,0 +1,104 @@
+{
+    "abilities": [
+        {
+            "name": "L\u00e4ke\u00f6rtkunskap",
+            "value": 7
+        },
+        {
+            "name": "G\u00f6mma sig",
+            "value": 2
+        },
+        {
+            "name": "Sp\u00e5 v\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Lyssna",
+            "value": 2
+        },
+        {
+            "name": "Giftkunskap",
+            "value": 9
+        },
+        {
+            "name": "Botanik",
+            "value": 18
+        },
+        {
+            "name": "Drogkunskap",
+            "value": 9
+        },
+        {
+            "name": "L\u00e4sa/skriva modersm\u00e5l",
+            "value": 13
+        }
+    ],
+    "age": 33,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        3
+    ],
+    "charisma": 12,
+    "dexterity": 14,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 18,
+    "items": [
+        {
+            "name": "Kniv",
+            "value": 1
+        },
+        {
+            "name": "Byxor",
+            "value": 0
+        },
+        {
+            "name": "Skjorta",
+            "value": 0
+        },
+        {
+            "name": "L\u00e4derst\u00f6vlar, mjuka",
+            "value": 0
+        },
+        {
+            "name": "Ryggs\u00e4ck(20l)",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 1
+        },
+        {
+            "name": "Jacka",
+            "value": 0
+        },
+        {
+            "name": "B\u00e4lte",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "left",
+    "money": 25,
+    "name": "Melker",
+    "parries": [
+        6
+    ],
+    "physicality": 7,
+    "proficiency": "scholar",
+    "psyche": 11,
+    "race": "hobbit",
+    "sex": "male",
+    "size": 2,
+    "spirituality": 8,
+    "strength": 8,
+    "weapons": []
+}

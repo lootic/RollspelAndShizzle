@@ -1,0 +1,96 @@
+{
+    "abilities": [
+        {
+            "name": "Tala fr\u00e4mmande spr\u00e5k",
+            "value": 12
+        },
+        {
+            "name": "L\u00e4rdomsf\u00e4rdigheter",
+            "value": 9
+        },
+        {
+            "name": "L\u00e4rdomsf\u00e4rdigheter",
+            "value": 8
+        },
+        {
+            "name": "Rida",
+            "value": 2
+        },
+        {
+            "name": "Geografi",
+            "value": 2
+        },
+        {
+            "name": "\u00d6verlevnad",
+            "value": 2
+        },
+        {
+            "name": "L\u00e4sa/skriva modersm\u00e5l",
+            "value": 9
+        }
+    ],
+    "age": 51,
+    "armour": {
+        "head": "none",
+        "leftArm": "none",
+        "leftLeg": "none",
+        "rightArm": "none",
+        "rightLeg": "none",
+        "stomach": "none",
+        "torso": "none"
+    },
+    "attacks": [
+        6
+    ],
+    "charisma": 7,
+    "dexterity": 7,
+    "extraFightingCapacity": "0",
+    "extraHitPoints": "0",
+    "intelligence": 14,
+    "items": [
+        {
+            "name": "Kl\u00e4nning",
+            "value": 1
+        },
+        {
+            "name": "Underkl\u00e4der",
+            "value": 2
+        },
+        {
+            "name": "Filt (tjock)",
+            "value": 1
+        },
+        {
+            "name": "Yllevantar",
+            "value": 1
+        },
+        {
+            "name": "Ylletr\u00f6ja",
+            "value": 1
+        },
+        {
+            "name": "M\u00f6ssa",
+            "value": 1
+        }
+    ],
+    "level": "amateur",
+    "mainHand": "left",
+    "money": 1400,
+    "name": "Ildur Trolltunga",
+    "parries": [
+        1
+    ],
+    "physicality": 1,
+    "proficiency": "wizard",
+    "psyche": 16,
+    "race": "human",
+    "sex": "female",
+    "size": 11,
+    "spirituality": 14,
+    "strength": 13,
+    "weapons": [
+        {
+            "name": "Tr\u00e4stav"
+        }
+    ]
+}
